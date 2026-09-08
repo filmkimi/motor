@@ -181,18 +181,36 @@ body {
 /* --- ส่วนเพิ่มเติมสำหรับ Navbar และ ตะกร้าสินค้า --- */
 
 /* ลิงก์เลือกรุ่นรถใน Navbar */
+/* ลิงก์เมนู Navbar */
 .custom-nav-link {
   color: var(--text-dim) !important;
   font-weight: 500;
   letter-spacing: 0.05em;
-  padding: 6px 14px !important;
-  border-radius: 6px;
-  transition: all 0.25s ease;
+  padding: 6px 16px !important;
+  border-radius: 8px;
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease;
 }
 
+/* ตอนชี้เมาส์ (Hover) */
 .custom-nav-link:hover {
   color: #fff !important;
-  background-color: rgba(255, 107, 0, 0.15);
+  background-color: rgba(255, 107, 0, 0.15) !important;
+}
+
+/* ป้องกันสีค้างตอนคลิก (Focus) ถ้าไม่ได้เป็นหน้า Active */
+.custom-nav-link:focus:not(.active) {
+  background-color: transparent !important;
+  color: var(--text-dim) !important;
+}
+
+/* คลาส active: จะขึ้นสีส้มเฉพาะหน้าปัจจุบันที่เปิดอยู่เท่านั้น */
+.custom-nav-link.active {
+  color: #fff !important;
+  background-color: var(--neon-orange) !important;
+  box-shadow: 0 0 12px rgba(255, 107, 0, 0.4);
 }
 
 /* ปุ่มตะกร้าสินค้า */
