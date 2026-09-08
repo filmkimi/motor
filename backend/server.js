@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ เชื่อมต่อ MongoDB สำเร็จเรียบร้อย!'))
   .catch(err => console.error('❌ เชื่อมต่อ MongoDB ล้มเหลว:', err.message));
 
-// 2. สร้างโครงสร้างข้อมูล (Schema & Model) สำหรับเก็บข้อมูลรถและของแต่ง
+// 2. โครงสร้างข้อมูลสินค้า (Bike Schema)
 const BikeSchema = new mongoose.Schema({
   name: { type: String, required: true },
   category: String,
@@ -22,18 +22,35 @@ const BikeSchema = new mongoose.Schema({
   desc: String,
   model: String
 });
-
 const Bike = mongoose.model('Bike', BikeSchema);
 
-// 3. เสิร์ฟไฟล์หน้าเว็บ (HTML, CSS, JS, รูปภาพ) จากโฟลเดอร์ด้านนอก
+// 3. โครงสร้างข้อมูลคำสั่งซื้อ (Order Schema สำหรับเก็บการสั่งซื้อ)
+const OrderSchema = new mongoose.Schema({
+  customerName: { type: String, required: true },
+  customerPhone: { type: String, required: true },
+  items: [
+    {
+      id: String,
+      name: String,
+      price: Number,
+      qty: Number
+    }
+  ],
+  totalAmount: { type: Number, required: true },
+  status: { type: String, default: 'รอดำเนินการ' },
+  createdAt: { type: Date, default: Date.now }
+});
+const Order = mongoose.model('Order', OrderSchema);
+
+// 4. เสิร์ฟไฟล์หน้าเว็บ (HTML, CSS, JS) จากโฟลเดอร์นอก
 app.use(express.static(path.join(__dirname, '../')));
 
-// 4. หน้าแรก http://localhost:3000 ให้เปิด index.html
+// 5. หน้าแรก http://localhost:3000
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-// 5. API สำหรับดึงข้อมูลสินค้าทั้งหมด (GET)
+// 6. API ดึงข้อมูลสินค้าทั้งหมด (GET)
 app.get('/api/bikes', async (req, res) => {
   try {
     const bikes = await Bike.find();
@@ -43,22 +60,44 @@ app.get('/api/bikes', async (req, res) => {
   }
 });
 
-// 6. API สำหรับเพิ่มข้อมูลรถเข้า Database (POST)
-app.post('/api/bikes', async (req, res) => {
+// 7. API บันทึกคำสั่งซื้อใหม่ลง MongoDB (POST)
+app.post('/api/orders', async (req, res) => {
   try {
-    const newBike = new Bike(req.body);
-    const savedBike = await newBike.save();
-    res.status(201).json(savedBike);
+    const { customerName, customerPhone, items, totalAmount } = req.body;
+
+    if (!items || items.length === 0) {
+      return res.status(400).json({ message: 'ไม่มีสินค้าในตะกร้า' });
+    }
+
+    const newOrder = new Order({
+      customerName,
+      customerPhone,
+      items,
+      totalAmount
+    });
+
+    const savedOrder = await newOrder.save();
+    res.status(201).json({ message: 'บันทึกคำสั่งซื้อสำเร็จ!', orderId: savedOrder._id });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.error('Error saving order:', err);
+    res.status(500).json({ error: err.message });
   }
 });
 
-// 7. Route สำหรับยิงข้อมูลเริ่มต้นเข้า MongoDB (Seed Data)
+// 8. API สำหรับดูรายการสั่งซื้อทั้งหมด (ไว้เปิดเช็กหลังบ้าน)
+app.get('/api/orders', async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 });
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 9. Route Seed Data สินค้าเริ่มต้น
 app.get('/api/seed', async (req, res) => {
   try {
     await Bike.deleteMany({});
-
     const initialBikes = [
       {
         name: "โช้คหลัง Profender X-Series PCX 160",
@@ -89,7 +128,6 @@ app.get('/api/seed', async (req, res) => {
         model: "pcx"
       }
     ];
-
     await Bike.insertMany(initialBikes);
     res.json({ message: "เพิ่มข้อมูลเริ่มต้นเข้า MongoDB สำเร็จแล้ว!" });
   } catch (err) {
@@ -97,6 +135,6 @@ app.get('/api/seed', async (req, res) => {
   }
 });
 
-// 8. เริ่มรัน Server (ต้องอยู่ล่างสุดเสมอ)
+// 10. Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server รันอยู่ที่ http://localhost:${PORT}`));
