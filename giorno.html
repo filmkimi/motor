@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PCX 160 CUSTOM ZONE | อุปกรณ์ตกแต่งแท้และซิ่งครบวงจร</title>
+  <title>GIORNO+ CUSTOM ZONE | อุปกรณ์ตกแต่งแท้และซิ่งครบวงจร</title>
 
   <!-- Bootstrap 5.3 CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <!-- 1. NAVIGATION BAR (เหมือนหน้า index.html เป๊ะๆ) -->
+  <!-- 1. NAVIGATION BAR -->
   <nav class="navbar navbar-expand-lg street-nav fixed-top py-2">
     <div class="container">
       <!-- โลโก้ร้าน (คลิกแล้วกลับหน้าหลัก) -->
@@ -29,13 +29,13 @@
       <div class="collapse navbar-collapse justify-content-center" id="navContent">
         <ul class="navbar-nav gap-2 gap-lg-4 text-center my-3 my-lg-0">
           <li class="nav-item">
-            <a class="nav-link custom-nav-link " href="pcx.html">🔥 PCX 160</a>
+            <a class="nav-link custom-nav-link" href="pcx.html">🔥 PCX 160</a>
           </li>
           <li class="nav-item">
             <a class="nav-link custom-nav-link active" href="giorno.html">🛵 GIORNO+</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link custom-nav-link " href="lead.html">📦 LEAD 125</a>
+            <a class="nav-link custom-nav-link" href="lead.html">📦 LEAD 125</a>
           </li>
         </ul>
       </div>
@@ -72,14 +72,48 @@
           <span class="h4 fw-bold mb-0" style="color: var(--neon-orange);" id="cartTotalPrice">฿0</span>
         </div>
         <div class="d-grid gap-2">
-          <button class="btn btn-neon" id="checkoutBtn">สั่งซื้อผ่าน LINE</button>
+          <button class="btn btn-neon" id="openCheckoutModalBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+            ✅ ยืนยันการสั่งซื้อสินค้า
+          </button>
           <button class="btn btn-outline-secondary btn-sm" id="clearCartBtn">ล้างตะกร้า</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 3. HERO BANNER: PCX ZONE -->
+  <!-- 3. MODAL กรอกข้อมูลยืนยันคำสั่งซื้อส่งหลังบ้าน -->
+  <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-bg-dark border border-secondary">
+        <div class="modal-header border-secondary border-opacity-25">
+          <h5 class="modal-title font-monospace">📋 ยืนยันข้อมูลคำสั่งซื้อ</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label text-secondary small">ชื่อ-นามสกุล ผู้สั่งซื้อ</label>
+            <input type="text" class="form-control bg-black text-white border-secondary" id="customerName" placeholder="เช่น นายสมชาย ใจดี" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-secondary small">เบอร์โทรศัพท์ติดต่อ</label>
+            <input type="tel" class="form-control bg-black text-white border-secondary" id="customerPhone" placeholder="เช่น 0812345678" required>
+          </div>
+          <div class="p-3 rounded bg-black bg-opacity-50 border border-secondary border-opacity-25 mb-2">
+            <div class="d-flex justify-content-between">
+              <span>ยอดชำระสุทธิ:</span>
+              <strong class="text-warning h5 mb-0" id="modalTotalAmount">฿0</strong>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-secondary border-opacity-25">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-neon" id="confirmOrderBtn">ยืนยันส่งข้อมูลเข้าหลังบ้าน</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. HERO BANNER: GIORNO+ ZONE -->
   <header class="hero-banner text-center">
     <div class="container pt-5">
       <div class="badge-tag d-inline-block px-3 py-1 rounded-pill mb-3">
@@ -94,269 +128,146 @@
     </div>
   </header>
 
-  <!-- 4. PRODUCT SECTION -->
+  <!-- 5. PRODUCT SECTION -->
   <main class="container py-5">
     
     <!-- ปุ่มตัวกรองหมวดหมู่อุปกรณ์แต่ง -->
     <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
       <button class="tab-filter active" data-category="all">ทั้งหมด (All Items)</button>
-      <button class="tab-filter" data-category="suspension">ช่วงล่าง & เบรก</button>
-      <button class="tab-filter" data-category="performance">ชุดส่งกำลัง & เครื่องยนต์</button>
-      <button class="tab-filter" data-category="carbon">งานคาร์บอน & ภายนอก</button>
     </div>
 
-    <!-- รายการของแต่ง PCX -->
+    <!-- รายการของแต่ง GIORNO+ -->
     <div class="row g-4" id="bikeGrid">
 
-      <!-- ชิ้นที่ 1: ชุดชามหน้าแต่งปรับองศา + เม็ดไล่เบาตรงรุ่น -->
-<div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus" id="giorno-pulley">
-  <div class="moto-card h-100 d-flex flex-column">
-    <div class="moto-thumb">
-      <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp" alt="ชุดชามแต่ง Giorno+">
-      <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
-    </div>
-    <div class="p-4 d-flex flex-column flex-grow-1">
-      <h3 class="h5 fw-bold mb-2">Honda Giorno+</h3>
-      <div class="d-flex flex-wrap gap-2 mb-3">
-        <span class="spec-chip">125 cc eSP+ 4V</span>
-        <span class="spec-chip">ชุดชามแท้ปรับองศา + ล้างหน้าชาม + เม็ดไล่เบา</span>
-      </div>
-      <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex justify-content-between align-items-end mb-3">
-          <span class="text-secondary small">ราคา</span>
-          <span class="h4 fw-bold mb-0 text-white">฿1,890</span>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-neon add-to-cart-btn" data-id="giorno-pulley" data-name="Giorno+ ชุดชามหน้าแต่งปรับองศา" data-price="1890">
-            + ใส่ตะกร้า
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+      <!-- ชิ้นที่ 1: โช้คหลัง Profender -->
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="suspension" data-name="โช้คหลัง profender x-series giorno 125">
+        <div class="moto-card h-100 d-flex flex-column">
+          <div class="moto-thumb">
+            <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80" alt="Profender GIORNO">
+            <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">ยอดนิยม</span>
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="text-warning small mb-1">★★★★★ ทรงคลาสสิก นุ่มหนึบ</div>
+            <h3 class="h5 fw-bold mb-3">โช้คหลัง Profender X-Series GIORNO+</h3>
+            
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="spec-chip">ปรับ Rebound 16 ระดับ</span>
+              <span class="spec-chip">ซับแทงค์แท้</span>
+              <span class="spec-chip">รับประกัน 2 ปี</span>
+            </div>
 
-<!-- ชิ้นที่ 2: ท่อไอเสียผ่าหมกคอสแตนเลส (รอบกลางพุ่ง ปลายไหล ไม่รอรอบ) -->
-<div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus" id="giorno-exhaust">
-  <div class="moto-card h-100 d-flex flex-column">
-    <div class="moto-thumb">
-      <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp" alt="ท่อผ่าหมก Giorno+">
-      <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
-    </div>
-    <div class="p-4 d-flex flex-column flex-grow-1">
-      <h3 class="h5 fw-bold mb-2">Honda Giorno+</h3>
-      <div class="d-flex flex-wrap gap-2 mb-3">
-        <span class="spec-chip">125 cc eSP+ 4V</span>
-        <span class="spec-chip">ท่อผ่าหมกคอสแตนเลสทรงเดิม เพิ่มการคายไอเสีย มอก.</span>
-      </div>
-      <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex justify-content-between align-items-end mb-3">
-          <span class="text-secondary small">ราคา</span>
-          <span class="h4 fw-bold mb-0 text-white">฿2,900</span>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-neon add-to-cart-btn" data-id="giorno-exhaust" data-name="Giorno+ ท่อผ่าหมกคอสแตนเลส" data-price="2900">
-            + ใส่ตะกร้า
-          </button>
+            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+              <div class="d-flex justify-content-between align-items-end mb-3">
+                <span class="text-secondary small">ราคาอะไหล่</span>
+                <span class="h4 fw-bold mb-0 text-white">฿11,500</span>
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-neon add-to-cart-btn" data-id="giorno_profender" data-name="โช้คหลัง Profender X-Series GIORNO+" data-price="11500">
+                  + ใส่ตะกร้า
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<!-- ชิ้นที่ 3: ชุดคลัตช์คาร์บอน + กะโหลกกัดลายไล่เบา (ออกตัวกระชับ ไม่สั่น) -->
-<div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus" id="giorno-clutch">
-  <div class="moto-card h-100 d-flex flex-column">
-    <div class="moto-thumb">
-      <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp" alt="ชุดคลัตช์แต่ง Giorno+">
-      <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
-    </div>
-    <div class="p-4 d-flex flex-column flex-grow-1">
-      <h3 class="h5 fw-bold mb-2">Honda Giorno+</h3>
-      <div class="d-flex flex-wrap gap-2 mb-3">
-        <span class="spec-chip">125 cc eSP+ 4V</span>
-        <span class="spec-chip">ชุดผ้าคลัตช์คาร์บอน + กะโหลกกัดลายทองไล่เบา</span>
-      </div>
-      <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex justify-content-between align-items-end mb-3">
-          <span class="text-secondary small">ราคา</span>
-          <span class="h4 fw-bold mb-0 text-white">฿2,150</span>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-neon add-to-cart-btn" data-id="giorno-clutch" data-name="Giorno+ ชุดคลัตช์คาร์บอนกะโหลกกัดลาย" data-price="2150">
-            + ใส่ตะกร้า
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- แฟชั่นชิ้นที่ 1: มือเบรกแต่ง CNC ทูโทน Revolution -->
-<div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus" id="giorno-brake-lever">
-  <div class="moto-card h-100 d-flex flex-column">
-    <div class="moto-thumb">
-      <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp" alt="มือเบรกแต่ง Revolution Giorno+">
-      <span class="badge bg-primary position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แฟชั่นยอดนิยม</span>
-    </div>
-    <div class="p-4 d-flex flex-column flex-grow-1">
-      <h3 class="h5 fw-bold mb-2">Honda Giorno+</h3>
-      <div class="d-flex flex-wrap gap-2 mb-3">
-        <span class="spec-chip">อะลูมิเนียม CNC ชุบอะโนไดซ์</span>
-        <span class="spec-chip">มือเบรกแต่ง Revolution สไตล์ทูโทน ปรับระดับได้</span>
-      </div>
-      <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex justify-content-between align-items-end mb-3">
-          <span class="text-secondary small">ราคา</span>
-          <span class="h4 fw-bold mb-0 text-white">฿1,790</span>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-neon add-to-cart-btn" data-id="giorno-brake-lever" data-name="Giorno+ มือเบรกแต่ง CNC ทูโทน" data-price="1790">
-            + ใส่ตะกร้า
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+      <!-- ชิ้นที่ 2: ชุดชามข้างซิ่ง -->
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="performance" data-name="ชุดชามข้างแต่ง ชามแท้ขูดร่อง giorno plus 125 cvt">
+        <div class="moto-card h-100 d-flex flex-column">
+          <div class="moto-thumb">
+            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=700&q=80" alt="CVT Kit GIORNO">
+            <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="text-warning small mb-1">★★★★★ ต้นจัด ออกตัวไว บิดพุ่ง</div>
+            <h3 class="h5 fw-bold mb-3">ชุดชามข้างแต่งแท้ปรับองศา + เม็ด GIORNO+</h3>
+            
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="spec-chip">ตรงรุ่น eSP+</span>
+              <span class="spec-chip">สปริงแต่ง</span>
+              <span class="spec-chip">ไม่กินสายพาน</span>
+            </div>
 
-<!-- แฟชั่นชิ้นที่ 2: ชิลด์บังลมหน้าทรงคลาสสิกตัดขอบโครเมียม -->
-<div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus" id="giorno-classic-windshield">
-  <div class="moto-card h-100 d-flex flex-column">
-    <div class="moto-thumb">
-      <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp" alt="ชิลด์หน้าแต่ง Giorno+">
-      <span class="badge bg-info text-dark position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">โมเดิร์นคลาสสิก</span>
-    </div>
-    <div class="p-4 d-flex flex-column flex-grow-1">
-      <h3 class="h5 fw-bold mb-2">Honda Giorno+</h3>
-      <div class="d-flex flex-wrap gap-2 mb-3">
-        <span class="spec-chip">อะคริลิกใสหนาพิเศษ</span>
-        <span class="spec-chip">ชิลด์บังลมหน้าทรงสปอร์ตทัวริ่ง ขายึดสแตนเลสตรงรุ่น</span>
-      </div>
-      <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex justify-content-between align-items-end mb-3">
-          <span class="text-secondary small">ราคา</span>
-          <span class="h4 fw-bold mb-0 text-white">฿1,250</span>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-neon add-to-cart-btn" data-id="giorno-classic-windshield" data-name="Giorno+ ชิลด์บังลมหน้าทรงคลาสสิก" data-price="1250">
-            + ใส่ตะกร้า
-          </button>
+            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+              <div class="d-flex justify-content-between align-items-end mb-3">
+                <span class="text-secondary small">ราคาพร้อมใส่</span>
+                <span class="h4 fw-bold mb-0 text-white">฿2,490</span>
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-neon add-to-cart-btn" data-id="giorno_cvt" data-name="ชุดชามแต่งแท้ปรับองศา GIORNO+" data-price="2490">
+                  + ใส่ตะกร้า
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<!-- แฟชั่นชิ้นที่ 3: ชุดครอบแต่งลายคาร์บอนรอบคัน -->
-<div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus" id="giorno-carbon-trim">
-  <div class="moto-card h-100 d-flex flex-column">
-    <div class="moto-thumb">
-      <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp" alt="ชุดครอบคาร์บอน Giorno+">
-      <span class="badge bg-dark border border-secondary position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">ลุคสปอร์ต</span>
-    </div>
-    <div class="p-4 d-flex flex-column flex-grow-1">
-      <h3 class="h5 fw-bold mb-2">Honda Giorno+</h3>
-      <div class="d-flex flex-wrap gap-2 mb-3">
-        <span class="spec-chip">ฟิล์มคาร์บอนเคลือบเงา</span>
-        <span class="spec-chip">ชุดงานครอบกันร้อนท่อ + ครอบเรือนไมล์ + ครอบไฟหน้า</span>
-      </div>
-      <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex justify-content-between align-items-end mb-3">
-          <span class="text-secondary small">ราคา</span>
-          <span class="h4 fw-bold mb-0 text-white">฿950</span>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-neon add-to-cart-btn" data-id="giorno-carbon-trim" data-name="Giorno+ ชุดครอบแต่งลายคาร์บอน" data-price="950">
-            + ใส่ตะกร้า
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- รายการที่ 1: ตะแกรงบรรทุกสัมภาระหลังโครเมียม H2C แท้ศูนย์ -->
-<div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus" id="giorno-rear-carrier">
-  <div class="moto-card h-100 d-flex flex-column">
-    <div class="moto-thumb">
-      <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp" alt="ตะแกรงหลัง H2C Giorno+">
-      <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์ H2C</span>
-    </div>
-    <div class="p-4 d-flex flex-column flex-grow-1">
-      <h3 class="h5 fw-bold mb-2">Honda Giorno+</h3>
-      <div class="d-flex flex-wrap gap-2 mb-3">
-        <span class="spec-chip">อะไหล่แท้ฮอนด้า</span>
-        <span class="spec-chip">ตะแกรงบรรทุกสัมภาระด้านหลัง เหล็กชุบโครเมียมพรีเมียม</span>
-      </div>
-      <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex justify-content-between align-items-end mb-3">
-          <span class="text-secondary small">ราคา</span>
-          <span class="h4 fw-bold mb-0 text-white">฿1,450</span>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-neon add-to-cart-btn" data-id="giorno-h2c-carrier" data-name="Giorno+ ตะแกรงหลังโครเมียม H2C" data-price="1450">
-            + ใส่ตะกร้า
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+      <!-- ชิ้นที่ 3: ปั๊มบน Brembo -->
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="suspension" data-name="ปั๊มบน brembo rcs 15 corsa corta giorno">
+        <div class="moto-card h-100 d-flex flex-column">
+          <div class="moto-thumb">
+            <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80" alt="Brembo Brake">
+            <span class="badge bg-primary position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ 100%</span>
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="text-warning small mb-1">★★★★★ แท้ศูนย์ อิตาลี</div>
+            <h3 class="h5 fw-bold mb-3">ปั๊มบน Brembo RCS 15 Corsa Corta</h3>
+            
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="spec-chip">ก้านพับได้</span>
+              <span class="spec-chip">ปรับระยะ 3 โหมด</span>
+              <span class="spec-chip">เบรกนุ่มหนึบ</span>
+            </div>
 
-<!-- รายการที่ 2: ชิลด์บังลมหน้าสไตล์โมเดิร์นคลาสสิก H2C แท้ศูนย์ -->
-<div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus" id="giorno-h2c-windshield">
-  <div class="moto-card h-100 d-flex flex-column">
-    <div class="moto-thumb">
-      <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp" alt="ชิลด์บังลม H2C Giorno+">
-      <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์ H2C</span>
-    </div>
-    <div class="p-4 d-flex flex-column flex-grow-1">
-      <h3 class="h5 fw-bold mb-2">Honda Giorno+</h3>
-      <div class="d-flex flex-wrap gap-2 mb-3">
-        <span class="spec-chip">อะคริลิกเกรดพรีเมียม</span>
-        <span class="spec-chip">ชุดชิลด์บังลมทรงสั้นใส H2C พร้อมชุดขายึดแท้ตรงรุ่น</span>
-      </div>
-      <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex justify-content-between align-items-end mb-3">
-          <span class="text-secondary small">ราคา</span>
-          <span class="h4 fw-bold mb-0 text-white">฿1,890</span>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-neon add-to-cart-btn" data-id="giorno-h2c-windshield" data-name="Giorno+ ชิลด์บังลมหน้า H2C" data-price="1890">
-            + ใส่ตะกร้า
-          </button>
+            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+              <div class="d-flex justify-content-between align-items-end mb-3">
+                <span class="text-secondary small">ราคาอะไหล่</span>
+                <span class="h4 fw-bold mb-0 text-white">฿12,900</span>
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-neon add-to-cart-btn" data-id="giorno_brembo" data-name="ปั๊มบน Brembo RCS 15 Corsa Corta GIORNO+" data-price="12900">
+                  + ใส่ตะกร้า
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<!-- รายการที่ 3: แผ่นยางวางเท้าดีไซน์เรโทร H2C แท้ศูนย์ -->
-<div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus" id="giorno-floor-mat">
-  <div class="moto-card h-100 d-flex flex-column">
-    <div class="moto-thumb">
-      <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp" alt="แผ่นยางวางเท้า H2C Giorno+">
-      <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์ H2C</span>
-    </div>
-    <div class="p-4 d-flex flex-column flex-grow-1">
-      <h3 class="h5 fw-bold mb-2">Honda Giorno+</h3>
-      <div class="d-flex flex-wrap gap-2 mb-3">
-        <span class="spec-chip">ยางกันลื่นเกรดศูนย์</span>
-        <span class="spec-chip">แผ่นรองพักเท้า H2C พร้อมโลโก้ Giorno+ ป้องกันรอยขีดข่วน</span>
-      </div>
-      <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-        <div class="d-flex justify-content-between align-items-end mb-3">
-          <span class="text-secondary small">ราคา</span>
-          <span class="h4 fw-bold mb-0 text-white">฿650</span>
+      <!-- ชิ้นที่ 4: ชุดคาร์บอนแท้ -->
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="carbon" data-name="ครอบแคร้งคาร์บอน บังโคลนคาร์บอนแท้ giorno plus 125">
+        <div class="moto-card h-100 d-flex flex-column">
+          <div class="moto-thumb">
+            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=700&q=80" alt="Carbon Parts">
+            <span class="badge bg-dark border border-secondary position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">ผ้าคาร์บอนแท้</span>
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="text-warning small mb-1">★★★★★ ลายผ้า 2 คมชัด เงาวับ</div>
+            <h3 class="h5 fw-bold mb-3">ชุดครอบกรอง + ครอบแคร้ง คาร์บอนแท้</h3>
+            
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="spec-chip">คาร์บอนเคฟล่าแท้</span>
+              <span class="spec-chip">เคลือบ 2K ทนแดด</span>
+              <span class="spec-chip">สลับชิ้นเดิมได้เลย</span>
+            </div>
+
+            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+              <div class="d-flex justify-content-between align-items-end mb-3">
+                <span class="text-secondary small">ราคาชุดนี้</span>
+                <span class="h4 fw-bold mb-0 text-white">฿3,800</span>
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-neon add-to-cart-btn" data-id="giorno_carbon" data-name="ชุดคาร์บอนแท้ GIORNO+" data-price="3800">
+                  + ใส่ตะกร้า
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-neon add-to-cart-btn" data-id="giorno-h2c-floormat" data-name="Giorno+ แผ่นยางวางเท้า H2C" data-price="650">
-            + ใส่ตะกร้า
-          </button>
-        </div>
       </div>
+
     </div>
-  </div>
-</div>
 
     <!-- ข้อความค้นหาไม่เจอ -->
     <div id="noMatch" class="text-center py-5 d-none">
@@ -368,14 +279,14 @@
   <!-- Footer -->
   <footer class="py-4 text-center border-top border-secondary border-opacity-25 mt-5">
     <div class="container">
-      <div class="brand-logo mb-2">TORQUE <span>MOTORS</span> - PCX CUSTOM ZONE</div>
+      <div class="brand-logo mb-2">TORQUE <span>MOTORS</span> - GIORNO+ CUSTOM ZONE</div>
       <p class="text-secondary small mb-0">มีบริการช่างติดตั้งหน้าร้าน | จัดส่งด่วนทั่วไทยเก็บเงินปลายทาง</p>
     </div>
   </footer>
 
   <!-- Bootstrap 5.3 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- ใช้ script.js ตัวเดียวกัน ระบบตะกร้าจะทำงานทันที -->
-  <script src="script.js"></script>
+  <!-- ใช้ scripts.js ระบบตะกร้าและการสั่งซื้อจะทำงานทันที -->
+  <script src="scripts.js"></script>
 </body>
 </html>

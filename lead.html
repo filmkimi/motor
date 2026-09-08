@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PCX 160 CUSTOM ZONE | อุปกรณ์ตกแต่งแท้และซิ่งครบวงจร</title>
+  <title>LEAD 125 CUSTOM ZONE | อุปกรณ์ตกแต่งแท้และซิ่งครบวงจร</title>
 
   <!-- Bootstrap 5.3 CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <!-- 1. NAVIGATION BAR (เหมือนหน้า index.html เป๊ะๆ) -->
+  <!-- 1. NAVIGATION BAR -->
   <nav class="navbar navbar-expand-lg street-nav fixed-top py-2">
     <div class="container">
       <!-- โลโก้ร้าน (คลิกแล้วกลับหน้าหลัก) -->
@@ -29,10 +29,10 @@
       <div class="collapse navbar-collapse justify-content-center" id="navContent">
         <ul class="navbar-nav gap-2 gap-lg-4 text-center my-3 my-lg-0">
           <li class="nav-item">
-            <a class="nav-link custom-nav-link " href="pcx.html">🔥 PCX 160</a>
+            <a class="nav-link custom-nav-link" href="pcx.html">🔥 PCX 160</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link custom-nav-link " href="giorno.html">🛵 GIORNO+</a>
+            <a class="nav-link custom-nav-link" href="giorno.html">🛵 GIORNO+</a>
           </li>
           <li class="nav-item">
             <a class="nav-link custom-nav-link active" href="lead.html">📦 LEAD 125</a>
@@ -72,21 +72,55 @@
           <span class="h4 fw-bold mb-0" style="color: var(--neon-orange);" id="cartTotalPrice">฿0</span>
         </div>
         <div class="d-grid gap-2">
-          <button class="btn btn-neon" id="checkoutBtn">สั่งซื้อผ่าน LINE</button>
+          <button class="btn btn-neon" id="openCheckoutModalBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+            ✅ ยืนยันการสั่งซื้อสินค้า
+          </button>
           <button class="btn btn-outline-secondary btn-sm" id="clearCartBtn">ล้างตะกร้า</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 3. HERO BANNER: PCX ZONE -->
+  <!-- 3. MODAL กรอกข้อมูลยืนยันคำสั่งซื้อส่งหลังบ้าน -->
+  <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-bg-dark border border-secondary">
+        <div class="modal-header border-secondary border-opacity-25">
+          <h5 class="modal-title font-monospace">📋 ยืนยันข้อมูลคำสั่งซื้อ</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label text-secondary small">ชื่อ-นามสกุล ผู้สั่งซื้อ</label>
+            <input type="text" class="form-control bg-black text-white border-secondary" id="customerName" placeholder="เช่น นายสมชาย ใจดี" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-secondary small">เบอร์โทรศัพท์ติดต่อ</label>
+            <input type="tel" class="form-control bg-black text-white border-secondary" id="customerPhone" placeholder="เช่น 0812345678" required>
+          </div>
+          <div class="p-3 rounded bg-black bg-opacity-50 border border-secondary border-opacity-25 mb-2">
+            <div class="d-flex justify-content-between">
+              <span>ยอดชำระสุทธิ:</span>
+              <strong class="text-warning h5 mb-0" id="modalTotalAmount">฿0</strong>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-secondary border-opacity-25">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-neon" id="confirmOrderBtn">ยืนยันส่งข้อมูลเข้าหลังบ้าน</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. HERO BANNER: LEAD ZONE -->
   <header class="hero-banner text-center">
     <div class="container pt-5">
       <div class="badge-tag d-inline-block px-3 py-1 rounded-pill mb-3">
         🔥 ALL-NEW LEAD PERFORMANCE & CUSTOM PARTS
       </div>
       <h1 class="sport-title display-3 fw-bold mb-2">
-        LEAD <span style="color: var(--neon-orange);">CUSTOM ZONE</span>
+        LEAD 125 <span style="color: var(--neon-orange);">CUSTOM ZONE</span>
       </h1>
       <p class="text-secondary mb-4 mx-auto" style="max-width: 580px;">
         คัดสรรเฉพาะอุปกรณ์แต่ง LEAD คุณภาพสูง ตรงรุ่น ไม่ต้องแปลง ทั้งช่วงล่าง เครื่องยนต์ และชิ้นส่วนคาร์บอนแท้
@@ -94,30 +128,27 @@
     </div>
   </header>
 
-  <!-- 4. PRODUCT SECTION -->
+  <!-- 5. PRODUCT SECTION -->
   <main class="container py-5">
     
     <!-- ปุ่มตัวกรองหมวดหมู่อุปกรณ์แต่ง -->
     <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
       <button class="tab-filter active" data-category="all">ทั้งหมด (All Items)</button>
-      <button class="tab-filter" data-category="suspension">ช่วงล่าง & เบรก</button>
-      <button class="tab-filter" data-category="performance">ชุดส่งกำลัง & เครื่องยนต์</button>
-      <button class="tab-filter" data-category="carbon">งานคาร์บอน & ภายนอก</button>
     </div>
 
-    <!-- รายการของแต่ง PCX -->
+    <!-- รายการของแต่ง LEAD -->
     <div class="row g-4" id="bikeGrid">
 
       <!-- ชิ้นที่ 1: โช้คหลัง Profender -->
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="suspension" data-name="โช้คหลัง profender x-series pcx160">
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="suspension" data-name="โช้คหลัง profender x-series lead 125">
         <div class="moto-card h-100 d-flex flex-column">
           <div class="moto-thumb">
-            <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80" alt="Profender PCX">
+            <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80" alt="Profender LEAD">
             <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">ยอดนิยม</span>
           </div>
           <div class="p-4 d-flex flex-column flex-grow-1">
-            <div class="text-warning small mb-1">★★★★★ ตรงรุ่น ความสูง 365mm</div>
-            <h3 class="h5 fw-bold mb-3">โช้คหลัง Profender X-Series PCX 160</h3>
+            <div class="text-warning small mb-1">★★★★★ ตรงรุ่น ความสูงมาตรฐาน</div>
+            <h3 class="h5 fw-bold mb-3">โช้คหลัง Profender X-Series LEAD 125</h3>
             
             <div class="d-flex flex-wrap gap-2 mb-4">
               <span class="spec-chip">ปรับ Rebound 16 ระดับ</span>
@@ -131,7 +162,7 @@
                 <span class="h4 fw-bold mb-0 text-white">฿11,500</span>
               </div>
               <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="pcx_profender" data-name="โช้คหลัง Profender X-Series PCX" data-price="11500">
+                <button class="btn btn-neon add-to-cart-btn" data-id="lead_profender" data-name="โช้คหลัง Profender X-Series LEAD" data-price="11500">
                   + ใส่ตะกร้า
                 </button>
               </div>
@@ -141,18 +172,18 @@
       </div>
 
       <!-- ชิ้นที่ 2: ชุดชามข้างซิ่ง -->
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="performance" data-name="ชุดชามข้างแต่ง ชามแท้ขูดร่อง pcx 160 cvt">
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="performance" data-name="ชุดชามข้างแต่ง ชามแท้ขูดร่อง lead 125 cvt">
         <div class="moto-card h-100 d-flex flex-column">
           <div class="moto-thumb">
-            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=700&q=80" alt="CVT Kit PCX">
+            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=700&q=80" alt="CVT Kit LEAD">
             <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
           </div>
           <div class="p-4 d-flex flex-column flex-grow-1">
-            <div class="text-warning small mb-1">★★★★★ ต้นจัด ปลายไหล +10 km/h</div>
-            <h3 class="h5 fw-bold mb-3">ชุดชามข้างแต่งแท้ปรับองศา + เม็ด</h3>
+            <div class="text-warning small mb-1">★★★★★ ต้นจัด ปลายไหล บิดติดมือ</div>
+            <h3 class="h5 fw-bold mb-3">ชุดชามข้างแต่งแท้ปรับองศา + เม็ด LEAD</h3>
             
             <div class="d-flex flex-wrap gap-2 mb-4">
-              <span class="spec-chip">ตรงรุ่น eSP+</span>
+              <span class="spec-chip">ตรงรุ่น eSP+ 4 วาล์ว</span>
               <span class="spec-chip">สปริงแต่ง</span>
               <span class="spec-chip">ไม่กินสายพาน</span>
             </div>
@@ -163,7 +194,7 @@
                 <span class="h4 fw-bold mb-0 text-white">฿2,490</span>
               </div>
               <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="pcx_cvt" data-name="ชุดชามแต่งแท้ปรับองศา PCX 160" data-price="2490">
+                <button class="btn btn-neon add-to-cart-btn" data-id="lead_cvt" data-name="ชุดชามแต่งแท้ปรับองศา LEAD 125" data-price="2490">
                   + ใส่ตะกร้า
                 </button>
               </div>
@@ -173,7 +204,7 @@
       </div>
 
       <!-- ชิ้นที่ 3: ปั๊มบน Brembo -->
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="suspension" data-name="ปั๊มบน brembo rcs 15 corsa corta เบรก">
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="suspension" data-name="ปั๊มบน brembo rcs 15 corsa corta lead">
         <div class="moto-card h-100 d-flex flex-column">
           <div class="moto-thumb">
             <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80" alt="Brembo Brake">
@@ -195,38 +226,7 @@
                 <span class="h4 fw-bold mb-0 text-white">฿12,900</span>
               </div>
               <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="pcx_brembo" data-name="ปั๊มบน Brembo RCS 15 Corsa Corta" data-price="12900">
-                  + ใส่ตะกร้า
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ชิ้นที่ 1: ชิลด์หน้าแต่งทรงสปอร์ตสโม้คดำ -->
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="fashion" data-name="ชิลด์หน้าแต่ง สปอร์ต lead 125 windshield">
-        <div class="moto-card h-100 d-flex flex-column">
-          <div class="moto-thumb">
-            <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80" alt="Windshield Lead 125">
-            <span class="badge bg-primary position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แฟชั่นยอดนิยม</span>
-          </div>
-          <div class="p-4 d-flex flex-column flex-grow-1">
-            <div class="text-warning small mb-1">★★★★★ ลู่ลม ทรงสปอร์ต หล่อคมลงตัว</div>
-            <h3 class="h5 fw-bold mb-3">ชิลด์หน้าแต่งทรงสปอร์ต สีสโม้คดำ Lead 125</h3>
-            
-            <div class="d-flex flex-wrap gap-2 mb-4">
-              <span class="spec-chip">อะคริลิกเกรดพรีเมียม</span>
-              <span class="spec-chip">ตัดแสงสะท้อน</span>
-              <span class="spec-chip">ตรงรุ่น ไม่ต้องเจาะ</span>
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-              <div class="d-flex justify-content-between align-items-end mb-3">
-                <span class="text-secondary small">ราคาอะไหล่</span>
-                <span class="h4 fw-bold mb-0 text-white">฿790</span>
-              </div>
-              <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="lead_windshield" data-name="ชิลด์หน้าแต่งทรงสปอร์ต Lead 125" data-price="790">
+                <button class="btn btn-neon add-to-cart-btn" data-id="lead_brembo" data-name="ปั๊มบน Brembo RCS 15 Corsa Corta LEAD" data-price="12900">
                   + ใส่ตะกร้า
                 </button>
               </div>
@@ -235,93 +235,30 @@
         </div>
       </div>
 
-      <!-- ชิ้นที่ 2: มือเบรกแต่ง CNC ปรับระดับได้ -->
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="fashion" data-name="มือเบรกแต่ง cnc พับได้ lead 125 brake lever">
+      <!-- ชิ้นที่ 4: ชุดคาร์บอนแท้ -->
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="carbon" data-name="ครอบแคร้งคาร์บอน บังโคลนคาร์บอนแท้ lead 125">
         <div class="moto-card h-100 d-flex flex-column">
           <div class="moto-thumb">
-            <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80" alt="Brake Lever Lead 125">
-            <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">งาน CNC พรีเมียม</span>
+            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=700&q=80" alt="Carbon Parts">
+            <span class="badge bg-dark border border-secondary position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">ผ้าคาร์บอนแท้</span>
           </div>
           <div class="p-4 d-flex flex-column flex-grow-1">
-            <div class="text-warning small mb-1">★★★★★ ปรับระยะได้ 6 ระดับ จับกระชับมือ</div>
-            <h3 class="h5 fw-bold mb-3">ก้านเบรกแต่ง CNC ก้านพับกันหัก Lead 125</h3>
+            <div class="text-warning small mb-1">★★★★★ ลายผ้า 2 คมชัด เงาวับ</div>
+            <h3 class="h5 fw-bold mb-3">ชุดครอบกรอง + ครอบแคร้ง คาร์บอนแท้</h3>
             
             <div class="d-flex flex-wrap gap-2 mb-4">
-              <span class="spec-chip">อะลูมิเนียม CNC ชุบอโนไดซ์</span>
-              <span class="spec-chip">ก้านพับได้</span>
-              <span class="spec-chip">ตรงรุ่นไม่ต้องแปลง</span>
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-              <div class="d-flex justify-content-between align-items-end mb-3">
-                <span class="text-secondary small">ราคาอะไหล่</span>
-                <span class="h4 fw-bold mb-0 text-white">฿1,450</span>
-              </div>
-              <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="lead_brake_lever" data-name="มือเบรกแต่ง CNC Lead 125" data-price="1450">
-                  + ใส่ตะกร้า
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ชิ้นที่ 3: ชุดครอบแต่งฟิล์มคาร์บอนเงา 2K -->
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="fashion" data-name="ชุดครอบแต่งคาร์บอน lead 125 carbon cover">
-        <div class="moto-card h-100 d-flex flex-column">
-          <div class="moto-thumb">
-            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=700&q=80" alt="Carbon Cover Lead 125">
-            <span class="badge bg-dark border border-secondary position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">ลุคสปอร์ต</span>
-          </div>
-          <div class="p-4 d-flex flex-column flex-grow-1">
-            <div class="text-warning small mb-1">★★★★★ ลายผ้าคมชัด เงาวับ เพิ่มความสปอร์ตหรู</div>
-            <h3 class="h5 fw-bold mb-3">ชุดครอบแต่งฟิล์มคาร์บอน (กันร้อนท่อ + ครอบกรอง)</h3>
-            
-            <div class="d-flex flex-wrap gap-2 mb-4">
-              <span class="spec-chip">ฟิล์มคาร์บอนเคลือบ 2K</span>
-              <span class="spec-chip">ทนความร้อนสูง</span>
-              <span class="spec-chip">สลับใส่แทนของเดิม</span>
+              <span class="spec-chip">คาร์บอนเคฟล่าแท้</span>
+              <span class="spec-chip">เคลือบ 2K ทนแดด</span>
+              <span class="spec-chip">สลับชิ้นเดิมได้เลย</span>
             </div>
 
             <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
               <div class="d-flex justify-content-between align-items-end mb-3">
                 <span class="text-secondary small">ราคาชุดนี้</span>
-                <span class="h4 fw-bold mb-0 text-white">฿1,150</span>
+                <span class="h4 fw-bold mb-0 text-white">฿3,800</span>
               </div>
               <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="lead_carbon_cover" data-name="ชุดครอบแต่งฟิล์มคาร์บอน Lead 125" data-price="1150">
-                  + ใส่ตะกร้า
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ชิ้นที่ 1: ตะแกรงบรรทุกสัมภาระหลัง H2C แท้ศูนย์ -->
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="oem" data-name="ตะแกรงหลัง h2c แท้ศูนย์ lead 125 rear carrier">
-        <div class="moto-card h-100 d-flex flex-column">
-          <div class="moto-thumb">
-            <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80" alt="H2C Rear Carrier Lead 125">
-            <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์ H2C</span>
-          </div>
-          <div class="p-4 d-flex flex-column flex-grow-1">
-            <div class="text-warning small mb-1">★★★★★ อะไหล่แท้ Honda ไม่หลุดประกันศูนย์</div>
-            <h3 class="h5 fw-bold mb-3">ตะแกรงบรรทุกสัมภาระหลัง H2C Lead 125</h3>
-            
-            <div class="d-flex flex-wrap gap-2 mb-4">
-              <span class="spec-chip">เหล็กหนาพ่นสีเพาเดอร์โค้ท</span>
-              <span class="spec-chip">ตรงจุดยึดเดิม</span>
-              <span class="spec-chip">รองรับถาดกล่องท้ายทุกค่าย</span>
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-              <div class="d-flex justify-content-between align-items-end mb-3">
-                <span class="text-secondary small">ราคาอะไหล่</span>
-                <span class="h4 fw-bold mb-0 text-white">฿1,450</span>
-              </div>
-              <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="lead_h2c_carrier" data-name="ตะแกรงหลัง H2C Lead 125" data-price="1450">
+                <button class="btn btn-neon add-to-cart-btn" data-id="lead_carbon" data-name="ชุดคาร์บอนแท้ LEAD 125" data-price="3800">
                   + ใส่ตะกร้า
                 </button>
               </div>
@@ -330,69 +267,6 @@
         </div>
       </div>
 
-      <!-- ชิ้นที่ 2: แผ่นยางวางเท้า H2C แท้ศูนย์ -->
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="oem" data-name="แผ่นยางวางเท้า h2c แท้ศูนย์ lead 125 floor mat">
-        <div class="moto-card h-100 d-flex flex-column">
-          <div class="moto-thumb">
-            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=700&q=80" alt="H2C Floor Mat Lead 125">
-            <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์ H2C</span>
-          </div>
-          <div class="p-4 d-flex flex-column flex-grow-1">
-            <div class="text-warning small mb-1">★★★★★ ปกป้องสีพื้นรถ ลายเส้นสวยงาม</div>
-            <h3 class="h5 fw-bold mb-3">แผ่นยางรองพื้นพักเท้า H2C Lead 125</h3>
-            
-            <div class="d-flex flex-wrap gap-2 mb-4">
-              <span class="spec-chip">ยางเกรดศูนย์กันลื่น</span>
-              <span class="spec-chip">โลโก้ LEAD แท้</span>
-              <span class="spec-chip">ทำความสะอาดง่าย ไม่บวมแดด</span>
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-              <div class="d-flex justify-content-between align-items-end mb-3">
-                <span class="text-secondary small">ราคาอะไหล่</span>
-                <span class="h4 fw-bold mb-0 text-white">฿590</span>
-              </div>
-              <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="lead_h2c_floormat" data-name="แผ่นยางวางเท้า H2C Lead 125" data-price="590">
-                  + ใส่ตะกร้า
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ชิ้นที่ 3: ชิลด์บังลมหน้าทรงสปอร์ตใส H2C แท้ศูนย์ -->
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="oem" data-name="ชิลด์บังลมหน้า h2c แท้ศูนย์ lead 125 windshield">
-        <div class="moto-card h-100 d-flex flex-column">
-          <div class="moto-thumb">
-            <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80" alt="H2C Windshield Lead 125">
-            <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์ H2C</span>
-          </div>
-          <div class="p-4 d-flex flex-column flex-grow-1">
-            <div class="text-warning small mb-1">★★★★★ มองเห็นชัดเจน แข็งแรงทนทาน</div>
-            <h3 class="h5 fw-bold mb-3">ชิลด์บังลมหน้า H2C Lead 125 แท้</h3>
-            
-            <div class="d-flex flex-wrap gap-2 mb-4">
-              <span class="spec-chip">อะคริลิกใสเกรดพรีเมียม</span>
-              <span class="spec-chip">ขาจับแท้ตรงรุ่น</span>
-              <span class="spec-chip">ลดแรงลมปะทะลำตัว</span>
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-              <div class="d-flex justify-content-between align-items-end mb-3">
-                <span class="text-secondary small">ราคาอะไหล่</span>
-                <span class="h4 fw-bold mb-0 text-white">฿1,650</span>
-              </div>
-              <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="lead_h2c_windshield" data-name="ชิลด์บังลมหน้า H2C Lead 125" data-price="1650">
-                  + ใส่ตะกร้า
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- ข้อความค้นหาไม่เจอ -->
@@ -405,14 +279,14 @@
   <!-- Footer -->
   <footer class="py-4 text-center border-top border-secondary border-opacity-25 mt-5">
     <div class="container">
-      <div class="brand-logo mb-2">TORQUE <span>MOTORS</span> - PCX CUSTOM ZONE</div>
+      <div class="brand-logo mb-2">TORQUE <span>MOTORS</span> - LEAD CUSTOM ZONE</div>
       <p class="text-secondary small mb-0">มีบริการช่างติดตั้งหน้าร้าน | จัดส่งด่วนทั่วไทยเก็บเงินปลายทาง</p>
     </div>
   </footer>
 
   <!-- Bootstrap 5.3 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- ใช้ script.js ตัวเดียวกัน ระบบตะกร้าจะทำงานทันที -->
-  <script src="script.js"></script>
+  <!-- ใช้ scripts.js ระบบตะกร้าและการสั่งซื้อจะทำงานทันที -->
+  <script src="scripts.js"></script>
 </body>
 </html>
