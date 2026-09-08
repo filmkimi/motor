@@ -107,7 +107,7 @@
     <!-- รายการของแต่ง PCX -->
     <div class="row g-4" id="bikeGrid">
 
-      <!-- ชิ้นที่ 1: โช้คหลัง Profender -->
+      <!-- ชิ้นที่ 1: โช้คหลัง Profender / Ohlins -->
       <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="suspension" data-name="โช้คหลัง profender x-series pcx160">
         <div class="moto-card h-100 d-flex flex-column">
           <div class="moto-thumb">
@@ -126,12 +126,19 @@
 
             <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
               <div class="d-flex justify-content-between align-items-end mb-3">
-                <span class="text-secondary small">ราคาอะไหล่</span>
-                <span class="h4 fw-bold mb-0 text-white">฿11,500</span>
+                <div>
+                  <span class="text-secondary small d-block">ราคาอะไหล่</span>
+                  <span class="h4 fw-bold mb-0 text-white">฿11,500</span>
+                </div>
+                <div class="text-end">
+                  <span class="text-secondary small d-block">ผ่อนบัตร 0%</span>
+                  <span class="fw-bold" style="color: var(--neon-orange);">฿1,150 /ด.</span>
+                </div>
               </div>
+
               <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="pcx_profender" data-name="โช้คหลัง Profender X-Series PCX" data-price="11500">
-                  + ใส่ตะกร้า
+                <button class="btn btn-neon calc-btn" data-model="โช้ค Profender X-Series PCX" data-price="11500">
+                  จองคิวติดตั้ง / เช็กค่างวด
                 </button>
               </div>
             </div>
@@ -139,7 +146,7 @@
         </div>
       </div>
 
-      <!-- ชิ้นที่ 2: ชุดชามข้างซิ่ง -->
+      <!-- ชิ้นที่ 2: ชุดชามข้างซิ่งและเม็ดตุ้ม -->
       <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="performance" data-name="ชุดชามข้างแต่ง ชามแท้ขูดร่อง pcx 160 cvt">
         <div class="moto-card h-100 d-flex flex-column">
           <div class="moto-thumb">
@@ -148,22 +155,29 @@
           </div>
           <div class="p-4 d-flex flex-column flex-grow-1">
             <div class="text-warning small mb-1">★★★★★ ต้นจัด ปลายไหล +10 km/h</div>
-            <h3 class="h5 fw-bold mb-3">ชุดชามข้างแต่งแท้ปรับองศา + เม็ด</h3>
+            <h3 class="h5 fw-bold mb-3">ชุดชามแต่งแท้ปรับองศา + เม็ดคัสตอม</h3>
             
             <div class="d-flex flex-wrap gap-2 mb-4">
-              <span class="spec-chip">ตรงรุ่น eSP+</span>
-              <span class="spec-chip">สปริงแต่ง</span>
+              <span class="spec-chip">ตรงรุ่น PCX 160 eSP+</span>
+              <span class="spec-chip">สปริงคลัตช์แต่ง</span>
               <span class="spec-chip">ไม่กินสายพาน</span>
             </div>
 
             <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
               <div class="d-flex justify-content-between align-items-end mb-3">
-                <span class="text-secondary small">ราคาพร้อมใส่</span>
-                <span class="h4 fw-bold mb-0 text-white">฿2,490</span>
+                <div>
+                  <span class="text-secondary small d-block">ราคาพร้อมติดตั้ง</span>
+                  <span class="h4 fw-bold mb-0 text-white">฿2,490</span>
+                </div>
+                <div class="text-end">
+                  <span class="text-secondary small d-block">รวมไล่เม็ด</span>
+                  <span class="fw-bold" style="color: var(--neon-orange);">ฟรีค่าแรง</span>
+                </div>
               </div>
+
               <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="pcx_cvt" data-name="ชุดชามแต่งแท้ปรับองศา PCX 160" data-price="2490">
-                  + ใส่ตะกร้า
+                <button class="btn btn-neon calc-btn" data-model="ชุดชามข้างแต่ง PCX 160" data-price="2490">
+                  จองคิวติดตั้ง / เช็กค่างวด
                 </button>
               </div>
             </div>
@@ -171,31 +185,38 @@
         </div>
       </div>
 
-      <!-- ชิ้นที่ 3: ปั๊มบน Brembo -->
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="suspension" data-name="ปั๊มบน brembo rcs 15 corsa corta เบรก">
+      <!-- ชิ้นที่ 3: ปั๊มเบรกบน Brembo Corsa Corta -->
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="suspension" data-name="ปั๊มบน brembo rcs 19 corsa corta เบรก">
         <div class="moto-card h-100 d-flex flex-column">
           <div class="moto-thumb">
             <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80" alt="Brembo Brake">
             <span class="badge bg-primary position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ 100%</span>
           </div>
           <div class="p-4 d-flex flex-column flex-grow-1">
-            <div class="text-warning small mb-1">★★★★★ แท้ศูนย์ อิตาลี</div>
+            <div class="text-warning small mb-1">★★★★★ งานศูนย์ อิตาลีแท้</div>
             <h3 class="h5 fw-bold mb-3">ปั๊มบน Brembo RCS 15 Corsa Corta</h3>
             
             <div class="d-flex flex-wrap gap-2 mb-4">
               <span class="spec-chip">ก้านพับได้</span>
               <span class="spec-chip">ปรับระยะ 3 โหมด</span>
-              <span class="spec-chip">เบรกนุ่มหนึบ</span>
+              <span class="spec-chip">เบรกนุ่ม หยุดมั่นใจ</span>
             </div>
 
             <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
               <div class="d-flex justify-content-between align-items-end mb-3">
-                <span class="text-secondary small">ราคาอะไหล่</span>
-                <span class="h4 fw-bold mb-0 text-white">฿12,900</span>
+                <div>
+                  <span class="text-secondary small d-block">ราคาอะไหล่</span>
+                  <span class="h4 fw-bold mb-0 text-white">฿12,900</span>
+                </div>
+                <div class="text-end">
+                  <span class="text-secondary small d-block">ผ่อนบัตร 0%</span>
+                  <span class="fw-bold" style="color: var(--neon-orange);">฿1,290 /ด.</span>
+                </div>
               </div>
+
               <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="pcx_brembo" data-name="ปั๊มบน Brembo RCS 15 Corsa Corta" data-price="12900">
-                  + ใส่ตะกร้า
+                <button class="btn btn-neon calc-btn" data-model="ปั๊มเบรก Brembo Corsa Corta" data-price="12900">
+                  จองคิวติดตั้ง / เช็กค่างวด
                 </button>
               </div>
             </div>
@@ -203,7 +224,7 @@
         </div>
       </div>
 
-      <!-- ชิ้นที่ 4: ชุดคาร์บอนแท้ -->
+      <!-- ชิ้นที่ 4: ชุดคาร์บอนแท้รอบคัน -->
       <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="carbon" data-name="ครอบแคร้งคาร์บอน บังโคลนคาร์บอนแท้ pcx 160">
         <div class="moto-card h-100 d-flex flex-column">
           <div class="moto-thumb">
@@ -222,12 +243,19 @@
 
             <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
               <div class="d-flex justify-content-between align-items-end mb-3">
-                <span class="text-secondary small">ราคาชุดนี้</span>
-                <span class="h4 fw-bold mb-0 text-white">฿3,800</span>
+                <div>
+                  <span class="text-secondary small d-block">ราคาครบชุด</span>
+                  <span class="h4 fw-bold mb-0 text-white">฿3,800</span>
+                </div>
+                <div class="text-end">
+                  <span class="text-secondary small d-block">สถานะ</span>
+                  <span class="text-success fw-bold">มีสินค้าพร้อมใส่</span>
+                </div>
               </div>
+
               <div class="d-grid gap-2">
-                <button class="btn btn-neon add-to-cart-btn" data-id="pcx_carbon" data-name="ชุดคาร์บอนแท้ PCX 160" data-price="3800">
-                  + ใส่ตะกร้า
+                <button class="btn btn-neon calc-btn" data-model="ชุดคาร์บอนแท้ PCX 160" data-price="3800">
+                  จองคิวติดตั้ง / เช็กค่างวด
                 </button>
               </div>
             </div>
