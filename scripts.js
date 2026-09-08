@@ -1,92 +1,124 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. ตัวกรองหมวดหมู่ & ค้นหาด่วน
-  const tabButtons = document.querySelectorAll('.tab-filter');
-  const bikeItems = document.querySelectorAll('.bike-item');
-  const searchInput = document.getElementById('searchInput');
-  const noMatch = document.getElementById('noMatch');
+  // 1. ระบบจัดการตะกร้าสินค้า (Shopping Cart System)
+  let cart = [];
 
-  let currentCategory = 'all';
+  const cartBadge = document.getElementById('cartBadge');
+  const cartCountHeader = document.getElementById('cartCountHeader');
+  const cartItemsList = document.getElementById('cartItemsList');
+  const cartTotalPrice = document.getElementById('cartTotalPrice');
+  const clearCartBtn = document.getElementById('clearCartBtn');
+  const checkoutBtn = document.getElementById('checkoutBtn');
 
-  function filterBikes() {
-    const keyword = searchInput.value.toLowerCase().trim();
-    let count = 0;
+  // เพิ่มสินค้าลงตะกร้า
+  const addButtons = document.querySelectorAll('.add-to-cart-btn');
+  addButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id');
+      const name = btn.getAttribute('data-name');
+      const price = parseInt(btn.getAttribute('data-price'), 10);
 
-    bikeItems.forEach(card => {
-      const category = card.getAttribute('data-category');
-      const name = card.getAttribute('data-name').toLowerCase();
-
-      const matchCat = (currentCategory === 'all' || category === currentCategory);
-      const matchSearch = name.includes(keyword);
-
-      if (matchCat && matchSearch) {
-        card.classList.remove('d-none');
-        count++;
+      const existingItem = cart.find(item => item.id === id);
+      if (existingItem) {
+        existingItem.qty += 1;
       } else {
-        card.classList.add('d-none');
+        cart.push({ id, name, price, qty: 1 });
       }
-    });
 
-    if (count === 0) {
-      noMatch.classList.remove('d-none');
+      renderCart();
+
+      // แสดง Animation เล็กน้อยที่ปุ่มตะกร้า
+      const cartBtn = document.querySelector('.btn-cart');
+      cartBtn.classList.add('scale-105');
+      setTimeout(() => cartBtn.classList.remove('scale-105'), 200);
+    });
+  });
+
+  // อัปเดตหน้าตาตะกร้าสินค้า
+  function renderCart() {
+    const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+
+    // อัปเดตตัวเลข Badge
+    if (totalCount > 0) {
+      cartBadge.classList.remove('d-none');
+      cartBadge.innerText = totalCount;
     } else {
-      noMatch.classList.add('d-none');
+      cartBadge.classList.add('d-none');
     }
+    cartCountHeader.innerText = totalCount;
+
+    // ถ้าไม่มีสินค้า
+    if (cart.length === 0) {
+      cartItemsList.innerHTML = '<p class="text-secondary text-center my-5">ยังไม่มีสินค้าในตะกร้า</p>';
+      cartTotalPrice.innerText = '฿0';
+      return;
+    }
+
+    // วนลูปแสดงสินค้า
+    let total = 0;
+    cartItemsList.innerHTML = '';
+
+    cart.forEach(item => {
+      const itemSubtotal = item.price * item.qty;
+      total += itemSubtotal;
+
+      const itemRow = document.createElement('div');
+      itemRow.className = 'cart-item-row d-flex justify-content-between align-items-center';
+      itemRow.innerHTML = `
+        <div>
+          <div class="fw-bold text-white small">${item.name}</div>
+          <div class="text-secondary small">฿${item.price.toLocaleString()} x ${item.qty}</div>
+        </div>
+        <div class="text-end">
+          <div class="fw-bold text-warning small mb-1">฿${itemSubtotal.toLocaleString()}</div>
+          <button class="btn btn-outline-danger btn-sm py-0 px-2 remove-item-btn" data-id="${item.id}" style="font-size: 0.75rem;">ลบ</button>
+        </div>
+      `;
+      cartItemsList.appendChild(itemRow);
+    });
+
+    cartTotalPrice.innerText = `฿${total.toLocaleString()}`;
+
+    // ผูกปุ่มลบรายชิ้น
+    document.querySelectorAll('.remove-item-btn').forEach(delBtn => {
+      delBtn.addEventListener('click', () => {
+        const idToRemove = delBtn.getAttribute('data-id');
+        cart = cart.filter(item => item.id !== idToRemove);
+        renderCart();
+      });
+    });
   }
 
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentCategory = btn.getAttribute('data-category');
-      filterBikes();
-    });
+  // ล้างตะกร้าทั้งหมด
+  clearCartBtn.addEventListener('click', () => {
+    cart = [];
+    renderCart();
   });
 
-  searchInput.addEventListener('input', filterBikes);
+  // ปุ่มสั่งซื้อผ่าน LINE
+  checkoutBtn.addEventListener('click', () => {
+    if (cart.length === 0) {
+      alert('กรุณาเลือกสินค้าใส่ตะกร้าก่อนทำการสั่งซื้อครับ');
+      return;
+    }
+    const orderSummary = cart.map(i => `${i.name} (${i.qty} คัน/ชิ้น)`).join(', ');
+    alert(`ระบบบันทึกคำสั่งซื้อของคุณ: ${orderSummary}\nยอดรวม ${cartTotalPrice.innerText}\nเตรียมส่งข้อมูลไปยัง LINE เจ้าหน้าที่!`);
+  });
 
-  // 2. ระบบ Modal คำนวณค่างวด (Finance Calculator)
-  const calcButtons = document.querySelectorAll('.calc-btn');
-  const calcModalEl = document.getElementById('calcModal');
-  const calcModal = new bootstrap.Modal(calcModalEl);
+  // 2. การค้นหาด่วนแบบพิมพ์เรียลไทม์
+  const searchInput = document.getElementById('searchInput');
+  const bikeItems = document.querySelectorAll('.bike-item');
 
-  const modalBikeName = document.getElementById('modalBikeName');
-  const modalPriceInput = document.getElementById('modalPriceInput');
-  const downRange = document.getElementById('downRange');
-  const downPercentText = document.getElementById('downPercentText');
-  const periodSelect = document.getElementById('periodSelect');
-  const monthlyResult = document.getElementById('monthlyResult');
-
-  let currentBasePrice = 0;
-
-  function calculatePayment() {
-    const downPercent = parseInt(downRange.value, 10);
-    downPercentText.innerText = `${downPercent}% (฿${((currentBasePrice * downPercent) / 100).toLocaleString()})`;
-
-    const principal = currentBasePrice - (currentBasePrice * downPercent / 100);
-    const months = parseInt(periodSelect.value, 10);
-    
-    // ดอกเบี้ยสมมติ 1.2% ต่อเดือน (ดอกเบี้ยทั่วไปของมอเตอร์ไซค์)
-    const monthlyRate = 0.012; 
-    const totalInterest = principal * monthlyRate * months;
-    const totalPay = principal + totalInterest;
-    const monthly = Math.round(totalPay / months);
-
-    monthlyResult.innerText = `฿${monthly.toLocaleString()} /ด.`;
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const keyword = searchInput.value.toLowerCase().trim();
+      bikeItems.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        if (name.includes(keyword)) {
+          card.classList.remove('d-none');
+        } else {
+          card.classList.add('d-none');
+        }
+      });
+    });
   }
-
-  calcButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const model = btn.getAttribute('data-model');
-      currentBasePrice = parseInt(btn.getAttribute('data-price'), 10);
-
-      modalBikeName.innerText = `ประมาณการค่างวด: ${model}`;
-      modalPriceInput.value = `฿${currentBasePrice.toLocaleString()}`;
-      
-      calculatePayment();
-      calcModal.show();
-    });
-  });
-
-  downRange.addEventListener('input', calculatePayment);
-  periodSelect.addEventListener('change', calculatePayment);
 });
