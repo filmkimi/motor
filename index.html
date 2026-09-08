@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TORQUE MOTORS | ซื้อขาย แลกเปลี่ยน รถมอเตอร์ไซค์คุณภาพ</title>
+
+  <!-- Bootstrap 5.3 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- แถบ Navigation -->
+  <nav class="navbar navbar-expand-lg street-nav fixed-top py-2">
+    <div class="container">
+      <a class="navbar-brand brand-logo" href="#">
+        TORQUE <span>MOTORS</span>
+      </a>
+      
+      <div class="d-flex align-items-center gap-3">
+        <span class="d-none d-md-inline text-secondary small">ศูนย์รวมมอเตอร์ไซค์คัดเกรด 100%</span>
+        <a href="tel:0812345678" class="btn btn-neon btn-sm px-3 rounded-pill">
+          โทรด่วน 081-234-5678
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-banner text-center">
+    <div class="container pt-5">
+      <div class="badge-tag d-inline-block px-3 py-1 rounded-pill mb-3">
+        ⚡ ออกรถง่าย ผ่อนสบาย ดาวน์ 0 บาททุกคัน
+      </div>
+      <h1 class="sport-title display-3 fw-bold mb-2">
+        RIDE YOUR <span style="color: var(--neon-orange);">FREEDOM</span>
+      </h1>
+      <p class="text-secondary mb-4 mx-auto" style="max-width: 540px;">
+        คัดสรรรถสภาพนางฟ้า ทั้งรถเกียร์ออโต้ขับสบาย รถครอบครัวสุดประหยัด และบิ๊กไบค์สายสปอร์ต
+      </p>
+
+      <!-- Search Box -->
+      <div class="row justify-content-center">
+        <div class="col-11 col-md-6 col-lg-5">
+          <div class="search-box d-flex align-items-center">
+            <span class="text-secondary me-2">🔍</span>
+            <input type="text" id="searchInput" class="form-control" placeholder="ค้นหารุ่นรถ เช่น Giorno, Wave, Forza...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Product & Filter Section -->
+  <main class="container py-5">
+    <!-- หมวดหมู่แบบกดสลับ -->
+    <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+      <button class="tab-filter active" data-category="all">ทั้งหมด (All Models)</button>
+      <button class="tab-filter" data-category="street">🛵 ออโตเมติก & วัยรุ่น</button>
+      <button class="tab-filter" data-category="family">👨‍👩‍👧 รถครอบครัว ใช้งานทนทาน</button>
+      <button class="tab-filter" data-category="sport">⚡ สปอร์ต & ทัวร์ริ่ง</button>
+    </div>
+
+    <!-- รายการรถ -->
+    <div class="row g-4" id="bikeGrid">
+
+      <!-- คันที่ 1: Giorno (สไตล์วัยรุ่น/ผู้ใหญ่ชิคๆ) -->
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus 125">
+        <div class="moto-card h-100 d-flex flex-column">
+          <div class="moto-thumb">
+            <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80" alt="Giorno">
+            <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">มาใหม่</span>
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="text-warning small mb-1">★★★★★ ไมล์น้อย 1,200 km</div>
+            <h3 class="h5 fw-bold mb-3">Honda Giorno+ 125 ABS (2024)</h3>
+            
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="spec-chip">125 cc</span>
+              <span class="spec-chip">ดิสก์เบรก ABS</span>
+              <span class="spec-chip">Smart Key</span>
+            </div>
+
+            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+              <div class="d-flex justify-content-between align-items-end mb-3">
+                <div>
+                  <span class="text-secondary small d-block">ราคาเงินสด</span>
+                  <span class="h4 fw-bold mb-0 text-white">฿64,900</span>
+                </div>
+                <div class="text-end">
+                  <span class="text-secondary small d-block">ผ่อนเริ่มต้น</span>
+                  <span class="fw-bold" style="color: var(--neon-orange);">฿1,890 /ด.</span>
+                </div>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button class="btn btn-neon calc-btn" data-model="Honda Giorno+ 125" data-price="64900">
+                  คำนวณค่างวด / จองคิว
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- คันที่ 2: Wave (รถครอบครัว ทน ประหยัดน้ำมัน) -->
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="family" data-name="wave 125i led">
+        <div class="moto-card h-100 d-flex flex-column">
+          <div class="moto-thumb">
+            <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80" alt="Wave 125i">
+            <span class="badge bg-success position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">ประหยัดน้ำมัน</span>
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="text-warning small mb-1">★★★★★ สภาพป้ายแดง</div>
+            <h3 class="h5 fw-bold mb-3">All New Wave 125i ไฟ LED</h3>
+            
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="spec-chip">125 cc</span>
+              <span class="spec-chip">ล้อแม็กแท้</span>
+              <span class="spec-chip">71.4 กม./ลิตร</span>
+            </div>
+
+            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+              <div class="d-flex justify-content-between align-items-end mb-3">
+                <div>
+                  <span class="text-secondary small d-block">ราคาเงินสด</span>
+                  <span class="h4 fw-bold mb-0 text-white">฿52,000</span>
+                </div>
+                <div class="text-end">
+                  <span class="text-secondary small d-block">ผ่อนเริ่มต้น</span>
+                  <span class="fw-bold" style="color: var(--neon-orange);">฿1,450 /ด.</span>
+                </div>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button class="btn btn-neon calc-btn" data-model="Wave 125i LED" data-price="52000">
+                  คำนวณค่างวด / จองคิว
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- คันที่ 3: Forza 350 (บิ๊กสกู๊ตเตอร์ หรู เท่ สปอร์ต) -->
+      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="sport" data-name="forza 350 roadsync">
+        <div class="moto-card h-100 d-flex flex-column">
+          <div class="moto-thumb">
+            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=700&q=80" alt="Forza 350">
+            <span class="badge bg-primary position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">ตัวท็อป</span>
+          </div>
+          <div class="p-4 d-flex flex-column flex-grow-1">
+            <div class="text-warning small mb-1">★★★★★ เช็กระยะศูนย์ครบ</div>
+            <h3 class="h5 fw-bold mb-3">Honda Forza 350 Roadsync</h3>
+            
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="spec-chip">330 cc</span>
+              <span class="spec-chip">ชิลด์หน้าไฟฟ้า</span>
+              <span class="spec-chip">Traction Control</span>
+            </div>
+
+            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+              <div class="d-flex justify-content-between align-items-end mb-3">
+                <div>
+                  <span class="text-secondary small d-block">ราคาเงินสด</span>
+                  <span class="h4 fw-bold mb-0 text-white">฿168,000</span>
+                </div>
+                <div class="text-end">
+                  <span class="text-secondary small d-block">ผ่อนเริ่มต้น</span>
+                  <span class="fw-bold" style="color: var(--neon-orange);">฿3,920 /ด.</span>
+                </div>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button class="btn btn-neon calc-btn" data-model="Forza 350" data-price="168000">
+                  คำนวณค่างวด / จองคิว
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ข้อความค้นหาไม่เจอ -->
+    <div id="noMatch" class="text-center py-5 d-none">
+      <h4 class="text-secondary">ไม่พบรถรุ่นที่คุณตามหา</h4>
+      <p class="text-muted small">พิมพ์ยี่ห้อหรือรุ่นอื่น หรือติดต่อทีมงานให้ช่วยหารถได้ทันทีครับ</p>
+    </div>
+  </main>
+
+  <!-- Modal ป๊อปอัปคำนวณค่างวด -->
+  <div class="modal fade" id="calcModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--bg-card); border: 1px solid var(--border-card); color: #fff;">
+        <div class="modal-header border-bottom border-secondary border-opacity-25">
+          <h5 class="modal-title font-monospace" id="modalBikeName">คำนวณค่างวด</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="mb-3">
+            <label class="form-label small text-secondary">ราคาตัวรถ (บาท)</label>
+            <input type="text" id="modalPriceInput" class="form-control bg-dark text-white border-secondary" readonly>
+          </div>
+          
+          <div class="mb-3">
+            <label class="form-label small text-secondary">เลือกเงินดาวน์: <span id="downPercentText" class="text-warning">15%</span></label>
+            <input type="range" class="form-range" id="downRange" min="0" max="30" step="5" value="15">
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label small text-secondary">ระยะเวลาผ่อน</label>
+            <select class="form-select bg-dark text-white border-secondary" id="periodSelect">
+              <option value="24">24 เดือน (2 ปี)</option>
+              <option value="36" selected>36 เดือน (3 ปี)</option>
+              <option value="48">48 เดือน (4 ปี)</option>
+            </select>
+          </div>
+
+          <div class="p-3 rounded text-center" style="background: rgba(255, 107, 0, 0.1); border: 1px dashed var(--neon-orange);">
+            <div class="small text-secondary mb-1">ประมาณการค่างวดต่อเดือน</div>
+            <div class="display-6 fw-bold" style="color: var(--neon-orange);" id="monthlyResult">฿0</div>
+          </div>
+        </div>
+        <div class="modal-footer border-top border-secondary border-opacity-25">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">ปิด</button>
+          <a href="#" id="lineConfirmBtn" class="btn btn-neon btn-sm">สนใจทักไลน์จองคันนี้</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 text-center border-top border-secondary border-opacity-25 mt-5">
+    <div class="container">
+      <div class="brand-logo mb-2">TORQUE <span>MOTORS</span></div>
+      <p class="text-secondary small mb-0">รับประกันเครื่องยนต์และระบบไฟ 1 ปีเต็ม | เอกสารครบพร้อมโอนทุกคัน</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

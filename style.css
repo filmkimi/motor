@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Teko:wght@600;700&display=swap');
+
+:root {
+  --bg-dark: #0f1115;
+  --bg-card: #181b22;
+  --border-card: #272c38;
+  --text-main: #f3f4f6;
+  --text-dim: #9ca3af;
+  --neon-orange: #ff6b00;
+  --neon-orange-hover: #ff8533;
+  --electric-blue: #0084ff;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Kanit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* หัวข้อสไตล์สปอร์ตโฉบเฉี่ยว */
+.sport-title {
+  font-family: 'Teko', sans-serif;
+  letter-spacing: 0.05em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+/* Navbar */
+.street-nav {
+  background-color: rgba(15, 17, 21, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand-logo {
+  font-family: 'Teko', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+.brand-logo span {
+  color: var(--neon-orange);
+}
+
+/* Hero Section */
+.hero-banner {
+  position: relative;
+  background: radial-gradient(circle at center top, rgba(255, 107, 0, 0.15) 0%, transparent 60%),
+              linear-gradient(to bottom, transparent, var(--bg-dark)),
+              #090a0d;
+  padding: 100px 0 60px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.badge-tag {
+  background-color: rgba(255, 107, 0, 0.12);
+  color: var(--neon-orange);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+/* กล่อง Search Bar */
+.search-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 50px;
+  padding: 6px 8px 6px 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  color: #fff;
+}
+
+.search-box input:focus {
+  background: transparent;
+  color: #fff;
+  box-shadow: none;
+}
+
+/* ปุ่มตัวกรองรถ */
+.tab-filter {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  color: var(--text-dim);
+  border-radius: 50px;
+  padding: 8px 22px;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.tab-filter:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.tab-filter.active {
+  background-color: var(--neon-orange);
+  border-color: var(--neon-orange);
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.35);
+}
+
+/* การ์ดรถ มอเตอร์ไซค์ */
+.moto-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.moto-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 107, 0, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.moto-thumb {
+  height: 220px;
+  background-color: #0b0c0f;
+  position: relative;
+  overflow: hidden;
+}
+
+.moto-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.moto-card:hover .moto-thumb img {
+  transform: scale(1.06);
+}
+
+.spec-chip {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* ปุ่มแอ็กชัน */
+.btn-neon {
+  background-color: var(--neon-orange);
+  color: #fff;
+  border: none;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+.btn-neon:hover {
+  background-color: var(--neon-orange-hover);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
+}
+
+.btn-calc {
+  background-color: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.btn-calc:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.05);
+}
