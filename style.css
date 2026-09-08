@@ -62,51 +62,6 @@ body {
   letter-spacing: 0.1em;
 }
 
-/* กล่อง Search Bar */
-.search-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
-  border-radius: 50px;
-  padding: 6px 8px 6px 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-.search-box input {
-  background: transparent;
-  border: none;
-  color: #fff;
-}
-
-.search-box input:focus {
-  background: transparent;
-  color: #fff;
-  box-shadow: none;
-}
-
-/* ปุ่มตัวกรองรถ */
-.tab-filter {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-card);
-  color: var(--text-dim);
-  border-radius: 50px;
-  padding: 8px 22px;
-  font-size: 0.95rem;
-  transition: all 0.25s ease;
-}
-
-.tab-filter:hover {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.tab-filter.active {
-  background-color: var(--neon-orange);
-  border-color: var(--neon-orange);
-  color: #fff;
-  font-weight: 500;
-  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.35);
-}
-
 /* การ์ดรถ มอเตอร์ไซค์ */
 .moto-card {
   background-color: var(--bg-card);
@@ -122,21 +77,30 @@ body {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
 }
 
+/* ล็อกสัดส่วนรูปภาพในการ์ดทุกรูปให้เท่ากัน ไม่ยืดเด็ดขาด */
 .moto-thumb {
   height: 220px;
   background-color: #0b0c0f;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.moto-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.moto-thumb img,
+.moto-card img {
+  width: 100% !important;
+  height: 220px !important;
+  max-height: 220px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
   transition: transform 0.5s ease;
 }
 
-.moto-card:hover .moto-thumb img {
+.moto-card:hover .moto-thumb img,
+.moto-card:hover img {
   transform: scale(1.06);
 }
 
@@ -165,22 +129,6 @@ body {
   box-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
 }
 
-.btn-calc {
-  background-color: transparent;
-  color: var(--text-dim);
-  border: 1px solid var(--border-card);
-  border-radius: 8px;
-  font-size: 0.85rem;
-}
-
-.btn-calc:hover {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.25);
-  background-color: rgba(255, 255, 255, 0.05);
-}
-/* --- ส่วนเพิ่มเติมสำหรับ Navbar และ ตะกร้าสินค้า --- */
-
-/* ลิงก์เลือกรุ่นรถใน Navbar */
 /* ลิงก์เมนู Navbar */
 .custom-nav-link {
   color: var(--text-dim) !important;
@@ -194,19 +142,11 @@ body {
   transition: all 0.2s ease;
 }
 
-/* ตอนชี้เมาส์ (Hover) */
 .custom-nav-link:hover {
   color: #fff !important;
   background-color: rgba(255, 107, 0, 0.15) !important;
 }
 
-/* ป้องกันสีค้างตอนคลิก (Focus) ถ้าไม่ได้เป็นหน้า Active */
-.custom-nav-link:focus:not(.active) {
-  background-color: transparent !important;
-  color: var(--text-dim) !important;
-}
-
-/* คลาส active: จะขึ้นสีส้มเฉพาะหน้าปัจจุบันที่เปิดอยู่เท่านั้น */
 .custom-nav-link.active {
   color: #fff !important;
   background-color: var(--neon-orange) !important;
@@ -231,11 +171,56 @@ body {
   box-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
 }
 
-/* แถบสินค้าในตะกร้า */
+/* รายการสินค้าในตะกร้า */
 .cart-item-row {
   background-color: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-card);
   border-radius: 8px;
   padding: 10px 12px;
   margin-bottom: 10px;
+}
+
+/* --- กล่องข้อความแจ้งเตือนสีเหลืองเข้ม (Toast Notification) --- */
+#toast-container {
+  position: fixed;
+  top: 85px;
+  right: 25px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.torque-toast {
+  background: linear-gradient(135deg, #d97706, #b45309); /* สีเหลืองเข้ม / มัสตาร์ดทอง */
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid #fbbf24;
+  box-shadow: 0 8px 25px rgba(217, 119, 6, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: auto;
+  animation: toastIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.torque-toast.hide {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

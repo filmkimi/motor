@@ -1,797 +1,423 @@
 <!DOCTYPE html>
-
 <html lang="th">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TORQUE MOTORS | รถมอเตอร์ไซค์และของแต่งซิ่ง</title>
 
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>TORQUE MOTORS | รถมอเตอร์ไซค์และของแต่งซิ่ง</title>
-
-
-
-  <!-- Bootstrap 5.3 CSS CDN -->
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-
+    <!-- Bootstrap 5.3 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-
-
-  <!-- 1. NAVIGATION BAR -->
-
-  <nav class="navbar navbar-expand-lg street-nav fixed-top py-2">
-
-    <div class="container">
-
-      <!-- โลโก้ร้าน -->
-
-      <a class="navbar-brand brand-logo" href="index.html">
-
-        TORQUE <span>MOTORS</span>
-
-      </a>
-
-
-
-      <!-- ปุ่ม Hamburger สำหรับหน้าจอมือถือ -->
-
-      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
-
-        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-
-      </button>
-
-
-
-      <!-- ลิงก์เมนูแยกรุ่นรถยอดฮิต -->
-
-      <div class="collapse navbar-collapse justify-content-center" id="navContent">
-
-        <ul class="navbar-nav gap-2 gap-lg-4 text-center my-3 my-lg-0">
-
-          <li class="nav-item">
-
-            <a class="nav-link custom-nav-link" href="pcx.html">🔥 PCX 160</a>
-
-          </li>
-
-          <li class="nav-item">
-
-            <a class="nav-link custom-nav-link" href="giorno.html">🛵 GIORNO+</a>
-
-          </li>
-
-          <li class="nav-item">
-
-            <a class="nav-link custom-nav-link" href="lead.html">📦 LEAD 125</a>
-
-          </li>
-
-        </ul>
-
-      </div>
-
-
-
-      <!-- ปุ่มเปิดตะกร้าสินค้า (Cart Button) -->
-
-      <div class="d-flex align-items-center">
-
-        <button class="btn btn-cart position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartSidebar">
-
-          🛒 ตะกร้า
-
-          <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">
-
-            0
-
-          </span>
-
-        </button>
-
-      </div>
-
-    </div>
-
-  </nav>
-
-
-
-  <!-- 2. OFFCANVAS ตะกร้าสินค้า (แถบสไลด์ข้างขวา) -->
-
-  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="cartSidebar" style="background-color: var(--bg-card) !important; border-left: 1px solid var(--border-card);">
-
-    <div class="offcanvas-header border-bottom border-secondary border-opacity-25">
-
-      <h5 class="offcanvas-title font-monospace">🛒 รายการในตะกร้า (<span id="cartCountHeader">0</span>)</h5>
-
-      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-
-    </div>
-
-    
-
-    <div class="offcanvas-body d-flex flex-column">
-
-      <!-- รายการสินค้าจะถูกสร้างด้วย JS ที่นี่ -->
-
-      <div id="cartItemsList" class="flex-grow-1 overflow-y-auto mb-3">
-
-        <p class="text-secondary text-center my-5 empty-msg">ยังไม่มีสินค้าในตะกร้า</p>
-
-      </div>
-
-
-
-      <!-- ยอดรวมและการชำระเงิน -->
-
-      <div class="border-top border-secondary border-opacity-25 pt-3">
-
-        <div class="d-flex justify-content-between align-items-center mb-3">
-
-          <span class="text-secondary">ยอดรวมทั้งสิ้น</span>
-
-          <span class="h4 fw-bold mb-0" style="color: var(--neon-orange);" id="cartTotalPrice">฿0</span>
-
-        </div>
-
-        <div class="d-grid gap-2">
-
-          <button class="btn btn-neon" id="openCheckoutModalBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal">
-
-            ✅ ยืนยันการสั่งซื้อสินค้า
-
-          </button>
-
-          <button class="btn btn-outline-secondary btn-sm" id="clearCartBtn">ล้างตะกร้า</button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-
-  <!-- 3. MODAL กรอกข้อมูลยืนยันคำสั่งซื้อส่งหลังบ้าน -->
-
-  <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
-
-    <div class="modal-dialog modal-dialog-centered">
-
-      <div class="modal-content text-bg-dark border border-secondary">
-
-        <div class="modal-header border-secondary border-opacity-25">
-
-          <h5 class="modal-title font-monospace">📋 ยืนยันข้อมูลคำสั่งซื้อ</h5>
-
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-
-        </div>
-
-        <div class="modal-body">
-
-          <div class="mb-3">
-
-            <label class="form-label text-secondary small">ชื่อ-นามสกุล ผู้สั่งซื้อ</label>
-
-            <input type="text" class="form-control bg-black text-white border-secondary" id="customerName" placeholder="เช่น นายสมชาย ใจดี" required>
-
-          </div>
-
-          <div class="mb-3">
-
-            <label class="form-label text-secondary small">เบอร์โทรศัพท์ติดต่อ</label>
-
-            <input type="tel" class="form-control bg-black text-white border-secondary" id="customerPhone" placeholder="เช่น 0812345678" required>
-
-          </div>
-
-          <div class="p-3 rounded bg-black bg-opacity-50 border border-secondary border-opacity-25 mb-2">
-
-            <div class="d-flex justify-content-between">
-
-              <span>ยอดชำระสุทธิ:</span>
-
-              <strong class="text-warning h5 mb-0" id="modalTotalAmount">฿0</strong>
-
+    <!-- 1. NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg street-nav fixed-top py-2">
+        <div class="container">
+            <!-- โลโก้ร้าน -->
+            <a class="navbar-brand brand-logo" href="index.html">
+                TORQUE <span>MOTORS</span>
+            </a>
+
+            <!-- ปุ่ม Hamburger สำหรับหน้าจอมือถือ -->
+            <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navContent">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+
+            <!-- ลิงก์เมนูแยกรุ่นรถยอดฮิต -->
+            <div class="collapse navbar-collapse justify-content-center" id="navContent">
+                <ul class="navbar-nav gap-2 gap-lg-4 text-center my-3 my-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link custom-nav-link" href="pcx.html">🔥 PCX 160</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom-nav-link" href="giorno.html">🛵 GIORNO+</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom-nav-link" href="lead.html">📦 LEAD 125</a>
+                    </li>
+                </ul>
             </div>
 
-          </div>
+            <!-- ปุ่มเปิดตะกร้าสินค้า (Cart Button) -->
+            <div class="d-flex align-items-center">
+                <button class="btn btn-cart position-relative" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#cartSidebar">
+                    🛒 ตะกร้า
+                    <span id="cartBadge"
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">
+                        0
+                    </span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- 2. OFFCANVAS ตะกร้าสินค้า (แถบสไลด์ข้างขวา) -->
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="cartSidebar"
+        style="background-color: var(--bg-card) !important; border-left: 1px solid var(--border-card);">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25">
+            <h5 class="offcanvas-title font-monospace">🛒 รายการในตะกร้า (<span id="cartCountHeader">0</span>)</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
         </div>
 
-        <div class="modal-footer border-secondary border-opacity-25">
+        <div class="offcanvas-body d-flex flex-column">
+            <!-- รายการสินค้าจะถูกสร้างด้วย JS ที่นี่ -->
+            <div id="cartItemsList" class="flex-grow-1 overflow-y-auto mb-3">
+                <p class="text-secondary text-center my-5 empty-msg">ยังไม่มีสินค้าในตะกร้า</p>
+            </div>
 
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-
-          <button type="button" class="btn btn-neon" id="confirmOrderBtn">ยืนยัน</button>
-
+            <!-- ยอดรวมและการชำระเงิน -->
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-secondary">ยอดรวมทั้งสิ้น</span>
+                    <span class="h4 fw-bold mb-0" style="color: var(--neon-orange);" id="cartTotalPrice">฿0</span>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-neon" id="openCheckoutModalBtn" data-bs-toggle="modal"
+                        data-bs-target="#checkoutModal">
+                        ✅ ยืนยันการสั่งซื้อสินค้า
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" id="clearCartBtn">ล้างตะกร้า</button>
+                </div>
+            </div>
         </div>
-
-      </div>
-
     </div>
 
-  </div>
+    <!-- 3. MODAL กรอกข้อมูลยืนยันคำสั่งซื้อส่งหลังบ้าน -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-bg-dark border border-secondary">
+                <div class="modal-header border-secondary border-opacity-25">
+                    <h5 class="modal-title font-monospace">📋 ยืนยันข้อมูลคำสั่งซื้อ</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small">ชื่อ-นามสกุล ผู้สั่งซื้อ</label>
+                        <input type="text" class="form-control bg-black text-white border-secondary" id="customerName"
+                            placeholder="เช่น นายสมชาย ใจดี" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small">เบอร์โทรศัพท์ติดต่อ</label>
+                        <input type="tel" class="form-control bg-black text-white border-secondary" id="customerPhone"
+                            placeholder="เช่น 0812345678" required>
+                    </div>
+                    <div class="p-3 rounded bg-black bg-opacity-50 border border-secondary border-opacity-25 mb-2">
+                        <div class="d-flex justify-content-between">
+                            <span>ยอดชำระสุทธิ:</span>
+                            <strong class="text-warning h5 mb-0" id="modalTotalAmount">฿0</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-secondary border-opacity-25">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-neon" id="confirmOrderBtn">ยืนยัน</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-
-  <!-- 4. HERO BANNER -->
-
-  <header class="hero-banner text-center">
-
+    <!-- 4. HERO BANNER -->
+    <header class="hero-banner text-center">
     <div class="container pt-5">
-
       <div class="badge-tag d-inline-block px-3 py-1 rounded-pill mb-3">
-
-        ⚡ เลือกรุ่นที่ใช่ แต่งในสไตล์ที่เป็นคุณ
-
+        🔥 ALL-NEW PCX 160 PERFORMANCE & CUSTOM PARTS
       </div>
-
       <h1 class="sport-title display-3 fw-bold mb-2">
-
-        STREET <span style="color: var(--neon-orange);">COLLECTION</span>
-
+        PCX 160 <span style="color: var(--neon-orange);">CUSTOM ZONE</span>
       </h1>
-
-      <p class="text-secondary mb-4 mx-auto" style="max-width: 540px;">
-
-        ศูนย์รวมรถและของแต่งตรงรุ่นสำหรับ PCX, GIORNO+ และ LEAD 125
-
+      <p class="text-secondary mb-4 mx-auto" style="max-width: 580px;">
+        คัดสรรเฉพาะอุปกรณ์แต่ง PCX คุณภาพสูง ตรงรุ่น ไม่ต้องแปลง ทั้งช่วงล่าง เครื่องยนต์ และชิ้นส่วนคาร์บอนแท้
       </p>
-
     </div>
-
   </header>
 
+    <!-- 5. MAIN PRODUCTS -->
+    <main class="container py-5">
+        <div class="row g-4" id="bikeGrid">
 
-
-  <!-- 5. MAIN PRODUCTS -->
-
-  <main class="container py-5">
-
-    <div class="row g-4" id="bikeGrid">
-
-
-
-      <!-- PCX 1 -->
-
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="pcx 160 abs" id="pcx">
-
-        <div class="moto-card h-100 d-flex flex-column">
-
-          <div class="moto-thumb position-relative">
-
-            <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp" alt="PCX 160" class="img-fluid rounded-top">
-
-            <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
-
-          </div>
-
-          <div class="p-4 d-flex flex-column flex-grow-1">
-
-            <h3 class="h5 fw-bold mb-2">Honda PCX 160 ABS (2024)</h3>
-
-            <div class="d-flex flex-wrap gap-2 mb-3">
-
-              <span class="spec-chip">157 cc</span>
-
-              <span class="spec-chip">ชุดชามข้างแต่ง (ชามแท้ปรับองศา + ชามใบพัด)</span>
-
+            <!-- PCX 1 -->
+            <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="pcx 160 abs" id="pcx">
+                <div class="moto-card h-100 d-flex flex-column">
+                    <div class="moto-thumb position-relative">
+                        <img src="https://img.lazcdn.com/g/p/157fd6e25ca8e0cc368270ce6061ccaa.jpg_960x960q80.jpg_.webp"
+                            alt="PCX 160" class="img-fluid rounded-top">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h3 class="h5 fw-bold mb-2">Honda PCX 160 ABS (2024)</h3>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="spec-chip">157 cc</span>
+                            <span class="spec-chip">ชุดชามข้างแต่ง (ชามแท้ปรับองศา + ชามใบพัด)</span>
+                        </div>
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            <div class="d-flex justify-content-between align-items-end mb-3">
+                                <span class="text-secondary small">ราคา</span>
+                                <span class="h4 fw-bold mb-0 text-white">฿5,980</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-neon add-to-cart-btn" data-id="pcx1"
+                                    data-name="Honda PCX 160 ABS" data-price="5980">
+                                    + ใส่ตะกร้า
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-
-              <div class="d-flex justify-content-between align-items-end mb-3">
-
-                <span class="text-secondary small">ราคา</span>
-
-                <span class="h4 fw-bold mb-0 text-white">฿5,980</span>
-
-              </div>
-
-              <div class="d-grid gap-2">
-
-                <button class="btn btn-neon add-to-cart-btn" data-id="pcx1" data-name="Honda PCX 160 ABS" data-price="5980">
-
-                  + ใส่ตะกร้า
-
-                </button>
-
-              </div>
-
+            <!-- PCX 2 -->
+            <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="pcx 160 abs" id="pcx">
+                <div class="moto-card h-100 d-flex flex-column">
+                    <div class="moto-thumb position-relative">
+                        <img src="https://inwfile.com/s-cz/b4pdav.jpg" alt="PCX 160" class="img-fluid rounded-top">
+                        <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แฟชั่น</span>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h3 class="h5 fw-bold mb-2">Honda PCX 160 ABS (2024)</h3>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="spec-chip">157 cc</span>
+                            <span class="spec-chip">มือเบรกปรับระดับ CNC</span>
+                        </div>
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            <div class="d-flex justify-content-between align-items-end mb-3">
+                                <span class="text-secondary small">ราคา</span>
+                                <span class="h4 fw-bold mb-0 text-white">฿380</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-neon add-to-cart-btn" data-id="pcx2"
+                                    data-name="Honda PCX 160 ABS" data-price="380">
+                                    + ใส่ตะกร้า
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-          </div>
+            <!-- PCX 3 (แก้ไขโครงสร้างเรียบร้อย) -->
+            <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="family" data-name="pcx 160 abs" id="pcx">
+                <div class="moto-card h-100 d-flex flex-column">
+                    <div class="moto-thumb position-relative">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS41iO7otH4fB3oMC5ozC3e-FqqfGTtTLocaamDw7aw9J5ceXALK1JSrTU&s=10"
+                            alt="PCX 160" class="img-fluid rounded-top">
+                        <span class="badge bg-success position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">ของแต่งแท้ศูนย์</span>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h3 class="h5 fw-bold mb-2">Honda PCX 160 ABS (2024)</h3>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="spec-chip">160 cc</span>
+                            <span class="spec-chip">ชุดแผ่นวางเท้าสแตนเลส/โครเมียม H2C</span>
+                        </div>
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            <div class="d-flex justify-content-between align-items-end mb-3">
+                                <span class="text-secondary small">ราคา</span>
+                                <span class="h4 fw-bold mb-0 text-white">฿2,000</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-neon add-to-cart-btn" data-id="pcx3"
+                                    data-name="Honda PCX 160 ABS" data-price="2000">
+                                    + ใส่ตะกร้า
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PCX 4 -->
+            <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="lead 125" id="lead">
+                <div class="moto-card h-100 d-flex flex-column">
+                    <div class="moto-thumb position-relative">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJf-G3huD1Gj-DjFEIP2IRV4h6eqaDwZAob8NIkuIratTq-t0tesB66Dg&s=10"
+                            alt="LEAD 125" class="img-fluid rounded-top">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h3 class="h5 fw-bold mb-2">Honda LEAD 125</h3>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="spec-chip">125 cc</span>
+                            <span class="spec-chip">สปริงทอร์ก / สปริงคลัตช์แต่ง</span>
+                        </div>
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            <div class="d-flex justify-content-between align-items-end mb-3">
+                                <span class="text-secondary small">ราคา</span>
+                                <span class="h4 fw-bold mb-0 text-white">฿240</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-neon add-to-cart-btn" data-id="lead1" data-name="Honda LEAD 125"
+                                    data-price="240">
+                                    + ใส่ตะกร้า
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PCX 5 -->
+            <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="lead 125" id="lead">
+                <div class="moto-card h-100 d-flex flex-column">
+                    <div class="moto-thumb position-relative">
+                        <img src="https://down-th.img.susercontent.com/file/th-11134207-81zte-mgeotxxnqsy0a8"
+                            alt="LEAD 125" class="img-fluid rounded-top">
+                        <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">สตรีทแฟชั่น</span>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h3 class="h5 fw-bold mb-2">Honda LEAD 125</h3>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="spec-chip">125 cc</span>
+                            <span class="spec-chip">สปริงคลัตช์แต่ง / สปริงทอร์ก</span>
+                        </div>
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            <div class="d-flex justify-content-between align-items-end mb-3">
+                                <span class="text-secondary small">ราคา</span>
+                                <span class="h4 fw-bold mb-0 text-white">฿240</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-neon add-to-cart-btn" data-id="lead2" data-name="Honda LEAD 125"
+                                    data-price="240">
+                                    + ใส่ตะกร้า
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PCX 6 -->
+            <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="family" data-name="lead 125" id="lead">
+                <div class="moto-card h-100 d-flex flex-column">
+                    <div class="moto-thumb position-relative">
+                        <img src="https://down-th.img.susercontent.com/file/sg-11134201-7rbmg-ll5ys75plz5g0c"
+                            alt="LEAD 125" class="img-fluid rounded-top">
+                        <span class="badge bg-success position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์</span>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h3 class="h5 fw-bold mb-2">Honda LEAD 125</h3>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="spec-chip">125 cc</span>
+                            <span class="spec-chip">ครอบฝาถังน้ำมันโครเมียม H2C</span>
+                        </div>
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            <div class="d-flex justify-content-between align-items-end mb-3">
+                                <span class="text-secondary small">ราคา</span>
+                                <span class="h4 fw-bold mb-0 text-white">฿612</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-neon add-to-cart-btn" data-id="lead3" data-name="Honda LEAD 125"
+                                    data-price="612">
+                                    + ใส่ตะกร้า
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PCX 7 -->
+            <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus 125"
+                id="giorno">
+                <div class="moto-card h-100 d-flex flex-column">
+                    <div class="moto-thumb position-relative">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz-KqUZ9b-QnEDs7wZB0YbKPuKpo1oHwXzpqlDjSLyag&s"
+                            alt="GIORNO+" class="img-fluid rounded-top">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h3 class="h5 fw-bold mb-2">Honda GIORNO+ 125 CBS</h3>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="spec-chip">125 cc</span>
+                            <span class="spec-chip">แผ่นกรองอากาศแต่ง</span>
+                        </div>
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            <div class="d-flex justify-content-between align-items-end mb-3">
+                                <span class="text-secondary small">ราคา</span>
+                                <span class="h4 fw-bold mb-0 text-white">฿400</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-neon add-to-cart-btn" data-id="giorno1"
+                                    data-name="Honda GIORNO+ 125 CBS" data-price="400">
+                                    + ใส่ตะกร้า
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PCX 8 -->
+            <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus 125"
+                id="giorno">
+                <div class="moto-card h-100 d-flex flex-column">
+                    <div class="moto-thumb position-relative">
+                        <img src="https://www.raidenforce.com/cdn/shop/files/x2_1800x1800.jpg?v=1760012589"
+                            alt="GIORNO+" class="img-fluid rounded-top">
+                        <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แฟชั่น</span>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h3 class="h5 fw-bold mb-2">Honda GIORNO+ 125 CBS</h3>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="spec-chip">125 cc</span>
+                            <span class="spec-chip">ล้อแม็กแต่งลายก้านหรือทำสีพาวเดอร์โค้ท</span>
+                        </div>
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            <div class="d-flex justify-content-between align-items-end mb-3">
+                                <span class="text-secondary small">ราคา</span>
+                                <span class="h4 fw-bold mb-0 text-white">฿12,380</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-neon add-to-cart-btn" data-id="giorno2"
+                                    data-name="Honda GIORNO+ 125 CBS" data-price="12380">
+                                    + ใส่ตะกร้า
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PCX 9 -->
+            <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="family" data-name="giorno plus 125"
+                id="giorno">
+                <div class="moto-card h-100 d-flex flex-column">
+                    <div class="moto-thumb position-relative">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ojttlLKTupDBDwk5UedUjryc-nI8EevgE5OyK_bCNK_JoK47GbbNM8rP&s=10"
+                            alt="GIORNO+" class="img-fluid rounded-top">
+                        <span class="badge bg-success position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์</span>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h3 class="h5 fw-bold mb-2">Honda GIORNO+ 125 CBS</h3>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="spec-chip">125 cc</span>
+                            <span class="spec-chip">กล่องสัมภาระท้ายรถแท้ศูนย์</span>
+                        </div>
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            <div class="d-flex justify-content-between align-items-end mb-3">
+                                <span class="text-secondary small">ราคา</span>
+                                <span class="h4 fw-bold mb-0 text-white">฿680</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-neon add-to-cart-btn" data-id="giorno3"
+                                    data-name="Honda GIORNO+ 125 CBS" data-price="680">
+                                    + ใส่ตะกร้า
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-
-      </div>
-
-
-
-      <!-- PCX 2 -->
-
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="pcx 160 abs" id="pcx">
-
-        <div class="moto-card h-100 d-flex flex-column">
-
-          <div class="moto-thumb position-relative">
-
-            <img src="https://inwfile.com/s-cz/b4pdav.jpg" alt="PCX 160" class="img-fluid rounded-top">
-
-            <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แฟชั่น</span>
-
-          </div>
-
-          <div class="p-4 d-flex flex-column flex-grow-1">
-
-            <h3 class="h5 fw-bold mb-2">Honda PCX 160 ABS (2024)</h3>
-
-            <div class="d-flex flex-wrap gap-2 mb-3">
-
-              <span class="spec-chip">157 cc</span>
-
-              <span class="spec-chip">มือเบรกปรับระดับ CNC</span>
-
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-
-              <div class="d-flex justify-content-between align-items-end mb-3">
-
-                <span class="text-secondary small">ราคา</span>
-
-                <span class="h4 fw-bold mb-0 text-white">฿380</span>
-
-              </div>
-
-              <div class="d-grid gap-2">
-
-                <button class="btn btn-neon add-to-cart-btn" data-id="pcx2" data-name="Honda PCX 160 ABS" data-price="380">
-
-                  + ใส่ตะกร้า
-
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- PCX 3 -->
-
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="family" data-name="pcx 160 abs" id="pcx">
-
-        <div class="moto-card h-100 d-flex flex-column">
-
-<<<<<<< information
-
-          <div class="moto-thumb">
-
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS41iO7otH4fB3oMC5ozC3e-FqqfGTtTLocaamDw7aw9J5ceXALK1JSrTU&s=10" alt="PCX 160">
-
-            <span class="badge bg-success position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์</span>
-
-=======
-
-          <div class="moto-thumb position-relative">
-
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS41iO7otH4fB3oMC5ozC3e-FqqfGTtTLocaamDw7aw9J5ceXALK1JSrTU&s=10" alt="PCX 160" class="img-fluid rounded-top">
-
-            <span class="badge bg-success position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">ของแต่งแท้ศูนย์</span>
-
->>>>>>> main
-
-          </div>
-
-          <div class="p-4 d-flex flex-column flex-grow-1">
-
-            <h3 class="h5 fw-bold mb-2">Honda PCX 160 ABS (2024)</h3>
-
-            <div class="d-flex flex-wrap gap-2 mb-3">
-
-              <span class="spec-chip">160 cc</span>
-
-              <span class="spec-chip">ชุดแผ่นวางเท้าสแตนเลส/โครเมียม H2C</span>
-
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-
-              <div class="d-flex justify-content-between align-items-end mb-3">
-
-                <span class="text-secondary small">ราคา</span>
-
-                <span class="h4 fw-bold mb-0 text-white">฿2,000</span>
-
-              </div>
-
-              <div class="d-grid gap-2">
-
-                <button class="btn btn-neon add-to-cart-btn" data-id="pcx3" data-name="Honda PCX 160 ABS" data-price="2000">
-
-                  + ใส่ตะกร้า
-
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- PCX 4 -->
-
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="lead 125" id="lead">
-
-        <div class="moto-card h-100 d-flex flex-column">
-
-          <div class="moto-thumb position-relative">
-
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJf-G3huD1Gj-DjFEIP2IRV4h6eqaDwZAob8NIkuIratTq-t0tesB66Dg&s=10" alt="LEAD 125" class="img-fluid rounded-top">
-
-            <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
-
-          </div>
-
-          <div class="p-4 d-flex flex-column flex-grow-1">
-
-            <h3 class="h5 fw-bold mb-2">Honda LEAD 125</h3>
-
-            <div class="d-flex flex-wrap gap-2 mb-3">
-
-              <span class="spec-chip">125 cc</span>
-
-              <span class="spec-chip">สปริงทอร์ก / สปริงคลัตช์แต่ง</span>
-
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-
-              <div class="d-flex justify-content-between align-items-end mb-3">
-
-                <span class="text-secondary small">ราคา</span>
-
-                <span class="h4 fw-bold mb-0 text-white">฿240</span>
-
-              </div>
-
-              <div class="d-grid gap-2">
-
-                <button class="btn btn-neon add-to-cart-btn" data-id="lead1" data-name="Honda LEAD 125" data-price="240">
-
-                  + ใส่ตะกร้า
-
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- PCX 5 -->
-
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="lead 125" id="lead">
-
-        <div class="moto-card h-100 d-flex flex-column">
-
-          <div class="moto-thumb position-relative">
-
-            <img src="https://down-th.img.susercontent.com/file/th-11134207-81zte-mgeotxxnqsy0a8" alt="LEAD 125" class="img-fluid rounded-top">
-
-            <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">สตรีทแฟชั่น</span>
-
-          </div>
-
-          <div class="p-4 d-flex flex-column flex-grow-1">
-
-            <h3 class="h5 fw-bold mb-2">Honda LEAD 125</h3>
-
-            <div class="d-flex flex-wrap gap-2 mb-3">
-
-              <span class="spec-chip">125 cc</span>
-
-              <span class="spec-chip">สปริงคลัตช์แต่ง / สปริงทอร์ก</span>
-
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-
-              <div class="d-flex justify-content-between align-items-end mb-3">
-
-                <span class="text-secondary small">ราคา</span>
-
-                <span class="h4 fw-bold mb-0 text-white">฿240</span>
-
-              </div>
-
-              <div class="d-grid gap-2">
-
-                <button class="btn btn-neon add-to-cart-btn" data-id="lead2" data-name="Honda LEAD 125" data-price="240">
-
-                  + ใส่ตะกร้า
-
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- PCX 6 -->
-
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="family" data-name="lead 125" id="lead">
-
-        <div class="moto-card h-100 d-flex flex-column">
-
-          <div class="moto-thumb position-relative">
-
-            <img src="https://down-th.img.susercontent.com/file/sg-11134201-7rbmg-ll5ys75plz5g0c" alt="LEAD 125" class="img-fluid rounded-top">
-
-            <span class="badge bg-success position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์</span>
-
-          </div>
-
-          <div class="p-4 d-flex flex-column flex-grow-1">
-
-            <h3 class="h5 fw-bold mb-2">Honda LEAD 125</h3>
-
-            <div class="d-flex flex-wrap gap-2 mb-3">
-
-              <span class="spec-chip">125 cc</span>
-
-              <span class="spec-chip">ครอบฝาถังน้ำมันโครเมียม H2C</span>
-
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-
-              <div class="d-flex justify-content-between align-items-end mb-3">
-
-                <span class="text-secondary small">ราคา</span>
-
-                <span class="h4 fw-bold mb-0 text-white">฿612</span>
-
-              </div>
-
-              <div class="d-grid gap-2">
-
-                <button class="btn btn-neon add-to-cart-btn" data-id="lead3" data-name="Honda LEAD 125" data-price="612">
-
-                  + ใส่ตะกร้า
-
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- PCX 7 -->
-
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus 125" id="giorno">
-
-        <div class="moto-card h-100 d-flex flex-column">
-
-          <div class="moto-thumb position-relative">
-
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz-KqUZ9b-QnEDs7wZB0YbKPuKpo1oHwXzpqlDjSLyag&s" alt="GIORNO+" class="img-fluid rounded-top">
-
-            <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">เพิ่มอัตราเร่ง</span>
-
-          </div>
-
-          <div class="p-4 d-flex flex-column flex-grow-1">
-
-            <h3 class="h5 fw-bold mb-2">Honda GIORNO+ 125 CBS</h3>
-
-            <div class="d-flex flex-wrap gap-2 mb-3">
-
-              <span class="spec-chip">125 cc</span>
-
-              <span class="spec-chip">แผ่นกรองอากาศแต่ง</span>
-
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-
-              <div class="d-flex justify-content-between align-items-end mb-3">
-
-                <span class="text-secondary small">ราคา</span>
-
-                <span class="h4 fw-bold mb-0 text-white">฿400</span>
-
-              </div>
-
-              <div class="d-grid gap-2">
-
-                <button class="btn btn-neon add-to-cart-btn" data-id="giorno1" data-name="Honda GIORNO+ 125 CBS" data-price="400">
-
-                  + ใส่ตะกร้า
-
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- PCX 8 -->
-
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="street" data-name="giorno plus 125" id="giorno">
-
-        <div class="moto-card h-100 d-flex flex-column">
-
-          <div class="moto-thumb position-relative">
-
-            <img src="https://www.raidenforce.com/cdn/shop/files/x2_1800x1800.jpg?v=1760012589" alt="GIORNO+" class="img-fluid rounded-top">
-
-            <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แฟชั่น</span>
-
-          </div>
-
-          <div class="p-4 d-flex flex-column flex-grow-1">
-
-            <h3 class="h5 fw-bold mb-2">Honda GIORNO+ 125 CBS</h3>
-
-            <div class="d-flex flex-wrap gap-2 mb-3">
-
-              <span class="spec-chip">125 cc</span>
-
-              <span class="spec-chip">ล้อแม็กแต่งลายก้านหรือทำสีพาวเดอร์โค้ท</span>
-
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-
-              <div class="d-flex justify-content-between align-items-end mb-3">
-
-                <span class="text-secondary small">ราคา</span>
-
-                <span class="h4 fw-bold mb-0 text-white">฿12,380</span>
-
-              </div>
-
-              <div class="d-grid gap-2">
-
-                <button class="btn btn-neon add-to-cart-btn" data-id="giorno2" data-name="Honda GIORNO+ 125 CBS" data-price="12380">
-
-                  + ใส่ตะกร้า
-
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- PCX 9 -->
-
-      <div class="col-12 col-md-6 col-lg-4 bike-item" data-category="family" data-name="giorno plus 125" id="giorno">
-
-        <div class="moto-card h-100 d-flex flex-column">
-
-          <div class="moto-thumb position-relative">
-
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ojttlLKTupDBDwk5UedUjryc-nI8EevgE5OyK_bCNK_JoK47GbbNM8rP&s=10" alt="GIORNO+" class="img-fluid rounded-top">
-
-            <span class="badge bg-success position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1">แท้ศูนย์</span>
-
-          </div>
-
-          <div class="p-4 d-flex flex-column flex-grow-1">
-
-            <h3 class="h5 fw-bold mb-2">Honda GIORNO+ 125 CBS</h3>
-
-            <div class="d-flex flex-wrap gap-2 mb-3">
-
-              <span class="spec-chip">125 cc</span>
-
-              <span class="spec-chip">กล่องสัมภาระท้ายรถแท้ศูนย์</span>
-
-            </div>
-
-            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
-
-              <div class="d-flex justify-content-between align-items-end mb-3">
-
-                <span class="text-secondary small">ราคา</span>
-
-                <span class="h4 fw-bold mb-0 text-white">฿680</span>
-
-              </div>
-
-              <div class="d-grid gap-2">
-
-                <button class="btn btn-neon add-to-cart-btn" data-id="giorno3" data-name="Honda GIORNO+ 125 CBS" data-price="680">
-
-                  + ใส่ตะกร้า
-
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-    </div>
-
-  </main>
-
-
-
-  <!-- Bootstrap 5.3 JS Bundle -->
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script src="scripts.js"></script>
-
+    </main>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts.js"></script>
 </body>
 
-</html> 
+</html>

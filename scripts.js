@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. ไฮไลต์ปุ่ม Navbar ตามหน้าที่เปิดอยู่ค้างไว้ทันที
+  const currentPath = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('.custom-nav-link');
+  navLinks.forEach(link => {
+    const linkHref = link.getAttribute('href');
+    if (linkHref === currentPath || (currentPath === '' && linkHref === 'index.html')) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+
   // ดึงข้อมูลตะกร้าจาก localStorage (ถ้าไม่มีให้เริ่มด้วย array ว่าง)
   let cart = JSON.parse(localStorage.getItem('torque_cart')) || [];
 
@@ -10,6 +22,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearCartBtn = document.getElementById('clearCartBtn');
   const confirmOrderBtn = document.getElementById('confirmOrderBtn');
   const openCheckoutModalBtn = document.getElementById('openCheckoutModalBtn');
+
+  // ฟังก์ชันสร้างกล่องข้อความสีเหลืองเข้ม (แสดงเฉพาะหน้านั้น พอเปลี่ยนหน้าก็หายไป)
+  function showNotification(message) {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'toast-container';
+      document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'torque-toast';
+    toast.innerHTML = `<span>⚡</span> <div>${message}</div>`;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add('hide');
+      setTimeout(() => toast.remove(), 400);
+    }, 2500);
+  }
 
   // ฟังก์ชันบันทึกตะกร้าลง localStorage
   function saveCart() {
@@ -74,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cart = cart.filter(item => item.id !== idToRemove);
         saveCart();
         renderCart();
+        showNotification('ลบสินค้าออกจากตะกร้าเรียบร้อย');
       });
     });
   }
@@ -106,6 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
     saveCart();
     renderCart();
 
+    // แสดงกล่องแจ้งเตือนสีเหลืองเข้ม
+    showNotification(`เพิ่ม <b>${itemName}</b> ลงตะกร้าแล้ว`);
+
     // Animation Effect บนปุ่มตะกร้า
     const cartNavBtn = document.querySelector('.btn-cart');
     if (cartNavBtn) {
@@ -120,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cart = [];
       saveCart();
       renderCart();
+      showNotification('ล้างรายการในตะกร้าทั้งหมดแล้ว');
     });
   }
 
@@ -129,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cart.length === 0) {
         e.preventDefault();
         e.stopPropagation();
-        alert('กรุณาเลือกสินค้าใส่ตะกร้าก่อนทำการสั่งซื้อ');
+        showNotification('กรุณาเลือกสินค้าใส่ตะกร้าก่อนทำการสั่งซื้อ');
       }
     });
   }
@@ -144,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const customerPhone = phoneInput ? phoneInput.value.trim() : '';
 
       if (!customerName || !customerPhone) {
-        alert('กรุณากรอกชื่อและเบอร์โทรศัพท์ให้ครบถ้วน');
+        showNotification('กรุณากรอกชื่อและเบอร์โทรศัพท์ให้ครบถ้วน');
         return;
       }
 
@@ -170,33 +208,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await res.json();
 
         if (res.ok) {
-          alert(`✅ สั่งซื้อสำเร็จ!\nรหัสสั่งซื้อ: ${data.orderId}`);
+          showNotification(`✅ สั่งซื้อสำเร็จ! รหัสสั่งซื้อ: ${data.orderId}`);
           
-          // ล้างตะกร้าและล้าง storage
           cart = [];
           saveCart();
           renderCart();
           if (nameInput) nameInput.value = '';
           if (phoneInput) phoneInput.value = '';
 
-          // ปิด Modal
           const modalEl = document.getElementById('checkoutModal');
           const modalInstance = bootstrap.Modal.getInstance(modalEl);
           if (modalInstance) modalInstance.hide();
 
-          // ปิด Sidebar
           const sidebarEl = document.getElementById('cartSidebar');
           const offcanvasInstance = bootstrap.Offcanvas.getInstance(sidebarEl);
           if (offcanvasInstance) offcanvasInstance.hide();
         } else {
-          alert(`เกิดข้อผิดพลาด: ${data.message || data.error}`);
+          showNotification(`เกิดข้อผิดพลาด: ${data.message || data.error}`);
         }
       } catch (err) {
         console.error('Fetch error:', err);
-        alert('ไม่สามารถเชื่อมต่อระบบหลังบ้านได้');
+        showNotification('ไม่สามารถเชื่อมต่อระบบหลังบ้านได้');
       } finally {
         confirmOrderBtn.disabled = false;
-        confirmOrderBtn.innerText = 'ยืนยันส่งข้อมูลเข้าหลังบ้าน';
+        confirmOrderBtn.innerText = 'ยืนยัน';
       }
     });
   }
