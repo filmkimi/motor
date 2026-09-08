@@ -32,10 +32,10 @@
             <a class="nav-link custom-nav-link active" href="pcx.html">🔥 PCX 160</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link custom-nav-link " href="giorno.html">🛵 GIORNO+</a>
+            <a class="nav-link custom-nav-link" href="giorno.html">🛵 GIORNO+</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link custom-nav-link " href="lead.html">📦 LEAD 125</a>
+            <a class="nav-link custom-nav-link" href="lead.html">📦 LEAD 125</a>
           </li>
         </ul>
       </div>
@@ -72,14 +72,48 @@
           <span class="h4 fw-bold mb-0" style="color: var(--neon-orange);" id="cartTotalPrice">฿0</span>
         </div>
         <div class="d-grid gap-2">
-          <button class="btn btn-neon" id="checkoutBtn">สั่งซื้อผ่าน LINE</button>
+          <button class="btn btn-neon" id="openCheckoutModalBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+            ✅ ยืนยันการสั่งซื้อสินค้า
+          </button>
           <button class="btn btn-outline-secondary btn-sm" id="clearCartBtn">ล้างตะกร้า</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 3. HERO BANNER: PCX ZONE -->
+  <!-- 3. MODAL กรอกข้อมูลยืนยันคำสั่งซื้อส่งหลังบ้าน -->
+  <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-bg-dark border border-secondary">
+        <div class="modal-header border-secondary border-opacity-25">
+          <h5 class="modal-title font-monospace">📋 ยืนยันข้อมูลคำสั่งซื้อ</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label text-secondary small">ชื่อ-นามสกุล ผู้สั่งซื้อ</label>
+            <input type="text" class="form-control bg-black text-white border-secondary" id="customerName" placeholder="เช่น นายสมชาย ใจดี" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-secondary small">เบอร์โทรศัพท์ติดต่อ</label>
+            <input type="tel" class="form-control bg-black text-white border-secondary" id="customerPhone" placeholder="เช่น 0812345678" required>
+          </div>
+          <div class="p-3 rounded bg-black bg-opacity-50 border border-secondary border-opacity-25 mb-2">
+            <div class="d-flex justify-content-between">
+              <span>ยอดชำระสุทธิ:</span>
+              <strong class="text-warning h5 mb-0" id="modalTotalAmount">฿0</strong>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-secondary border-opacity-25">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-neon" id="confirmOrderBtn">ยืนยันส่งข้อมูลเข้าหลังบ้าน</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. HERO BANNER: PCX ZONE -->
   <header class="hero-banner text-center">
     <div class="container pt-5">
       <div class="badge-tag d-inline-block px-3 py-1 rounded-pill mb-3">
@@ -91,17 +125,15 @@
       <p class="text-secondary mb-4 mx-auto" style="max-width: 580px;">
         คัดสรรเฉพาะอุปกรณ์แต่ง PCX คุณภาพสูง ตรงรุ่น ไม่ต้องแปลง ทั้งช่วงล่าง เครื่องยนต์ และชิ้นส่วนคาร์บอนแท้
       </p>
+    </div>
   </header>
 
-  <!-- 4. PRODUCT SECTION -->
+  <!-- 5. PRODUCT SECTION -->
   <main class="container py-5">
     
     <!-- ปุ่มตัวกรองหมวดหมู่อุปกรณ์แต่ง -->
     <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
       <button class="tab-filter active" data-category="all">ทั้งหมด (All Items)</button>
-      <button class="tab-filter" data-category="suspension">ช่วงล่าง & เบรก</button>
-      <button class="tab-filter" data-category="performance">ชุดส่งกำลัง & เครื่องยนต์</button>
-      <button class="tab-filter" data-category="carbon">งานคาร์บอน & ภายนอก</button>
     </div>
 
     <!-- รายการของแต่ง PCX -->
@@ -254,7 +286,7 @@
 
   <!-- Bootstrap 5.3 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- ใช้ script.js ตัวเดียวกัน ระบบตะกร้าจะทำงานทันที -->
-  <script src="script.js"></script>
+  <!-- ใช้ scripts.js ระบบตะกร้าและการสั่งซื้อจะทำงานทันที -->
+  <script src="scripts.js"></script>
 </body>
 </html>
